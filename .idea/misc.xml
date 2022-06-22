@@ -3,10 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-anydpi/ic_chat.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-anydpi/ic_post.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.15476190476190477" />
+        <entry key="app/src/main/res/layout/activity_create_fragment.xml" value="0.17391304347826086" />
+        <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.15476190476190477" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.17391304347826086" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.384375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.5765398550724637" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.32066869300911854" />
+        <entry key="app/src/main/res/layout/activity_profile_fragment.xml" value="0.17391304347826086" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.31382978723404253" />
+        <entry key="app/src/main/res/layout/fragment_chat_list.xml" value="0.10638297872340426" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.17481884057971014" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_users.xml" value="0.17481884057971014" />
+        <entry key="app/src/main/res/layout/row_users.xml" value="0.14437689969604864" />
+        <entry key="app/src/main/res/menu/menu_bottom_navigation.xml" value="0.26458333333333334" />
+        <entry key="app/src/main/res/menu/menu_main.xml" value="0.178125" />
       </map>
     </option>
   </component>

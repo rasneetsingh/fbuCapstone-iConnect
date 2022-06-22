@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">iConnect</string>
+    <string name="app_name">capstone</string>
+    <string name="home">Home</string>
+    <string name="save">Saved</string>
+    <string name="create">Create</string>
+    <string name="profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="homefragment">Hello Home</string>
+    <string name="profilefragment"> hello pROFILE</string>
+    <string name="savedfragment"> hello save</string>
+    <string name="createfragment"> hello create</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>
