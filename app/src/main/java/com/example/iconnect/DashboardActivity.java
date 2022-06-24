@@ -124,24 +124,5 @@ public class DashboardActivity extends AppCompatActivity {
 
     //inflate option menu
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        //get item id
-        int id= item.getItemId();
-        if(id == R.id.action_logout){
-            firebaseAuth.signOut();
-            checkUserStatus();
-        }
-
-        if(id== R.id.action_post){
-            startActivity(new Intent(DashboardActivity.this, AddPostActivity.class));
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

@@ -3,40 +3,41 @@ package com.example.iconnect;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
-    Button btnRegister;
-    Button btnLogin;
+    Button startedbtn;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.iConnect)));
 
-        btnRegister = findViewById(R.id.register_btn);
-        btnLogin = findViewById(R.id.login_btn);
+        startedbtn = findViewById(R.id.started_btn);
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user!= null){
+            goDashboardActivity();
+        }
+
+
+        startedbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //start RegisterActivity
-                startActivity(new Intent(MainActivity.this, RegisterActivity.class));
-
-            }
-        });
-
-        //handle login button click
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //start loginactivity
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-
+                startActivity(new Intent(MainActivity.this, GetStartedActivity.class));
 
             }
         });
@@ -44,5 +45,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
+    }
+
+    private void goDashboardActivity() {
+        Intent i = new Intent(this,DashboardActivity.class);
+        startActivity(i);
+        finish();
     }
 }

@@ -2,25 +2,46 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/register_btn"
-        android:text="Register"
-        android:layout_width="match_parent"
+
+
+    <LinearLayout
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_above="@id/login_btn"/>
+        android:orientation="vertical">
+
+
+    </LinearLayout>
 
     <Button
-        android:id="@+id/login_btn"
-        android:text="Login"
+        android:id="@+id/started_btn"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="179dp"
+        android:text="get started"
+        app:backgroundTint="@color/iConnect" />
 
+    <TextView
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="63dp"
+        android:layout_marginEnd="82dp"
+        android:layout_marginBottom="303dp"
+        android:text="Connect with other international students"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
 
 
 </RelativeLayout>
