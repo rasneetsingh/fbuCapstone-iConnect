@@ -15,12 +15,7 @@
         android:icon="@drawable/ic_save"
         android:title="@string/save"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/create"
-        android:enabled="true"
-        android:icon="@drawable/ic_create"
-        android:title="@string/create"
-        app:showAsAction="ifRoom" />
+
 
     <item
         android:id="@+id/profile"

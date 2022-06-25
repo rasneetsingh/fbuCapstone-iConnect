@@ -1,6 +1,7 @@
 package com.example.iconnect;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.appcompat.widget.Toolbar;
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -34,6 +36,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 
 public class ChatActivity extends AppCompatActivity {
@@ -68,15 +71,26 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.iConnect)));
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
-        toolbar.setTitle("");
+        toolbar.setTitle("Chat");
         recyclerView = findViewById(R.id.chat_recyclerView);
         profileIv = findViewById(R.id.profileIv);
         nameTv = findViewById(R.id.nameTv);
         statusTv = findViewById(R.id.userStatusTv);
         messageEt = findViewById(R.id.messageEt);
         sendBtn = findViewById(R.id.sendBtn);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Chat");
+
+
+
+        //enable back button
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
 
         //Layout (LinearLayout) for Recycler view
@@ -271,5 +285,10 @@ public class ChatActivity extends AppCompatActivity {
             checkUserStatus();
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed(); //go previous activity
+        return super.onSupportNavigateUp();
     }
 }

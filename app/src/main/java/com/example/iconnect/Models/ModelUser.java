@@ -29,17 +29,19 @@ public class ModelUser {
         return school;
     }
 
-    public String getCountry() {
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public String getcountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setcountry(String country) {
         this.country = country;
     }
 
-    public void setSchoolName(String school) {
-        this.school = school;
-    }
+
 
     public String getName() {
         return name;

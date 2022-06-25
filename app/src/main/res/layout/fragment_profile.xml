@@ -67,12 +67,23 @@
                         android:textColor="@color/white"
                         />
 
+                    <Button
+                        android:id="@+id/livevid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="live video" />
+
+
 
                 </LinearLayout>
 
+
             </LinearLayout>
 
+
+
         </RelativeLayout>
+
     </RelativeLayout>
 
 </ScrollView>

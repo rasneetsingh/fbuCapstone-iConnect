@@ -124,7 +124,7 @@ public class UsersFragment extends Fragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_main, menu);
 
         //search view
@@ -174,7 +174,7 @@ public class UsersFragment extends Fragment {
 
         //get current user
         FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
-        //get path of database named "users" containinf users info
+        //get path of database named "users" containing users info
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         //get all data from path
         ref.addValueEventListener(new ValueEventListener() {
@@ -187,7 +187,7 @@ public class UsersFragment extends Fragment {
                     //search by condition: name, email
                     //get all searched users except currently signed in user
                     if(!modelUser.getUid().equals(fUser.getUid())){
-                        if(modelUser.getCountry().toLowerCase().contains(query.toLowerCase()) ||
+                        if(modelUser.getcountry().toLowerCase().contains(query.toLowerCase()) ||
                                 modelUser.getschool().toLowerCase().contains(query.toLowerCase())){
                             userList.add(modelUser);
 

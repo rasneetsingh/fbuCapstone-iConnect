@@ -13,12 +13,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.iconnect.AddPostActivity;
 import com.example.iconnect.DashboardActivity;
 import com.example.iconnect.MainActivity;
 import com.example.iconnect.R;
+import com.example.iconnect.VideoActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -45,6 +48,7 @@ public class ProfileFragment extends Fragment {
     TextView tvName;
     TextView tvEmail;
     TextView tvschool;
+    Button liveBtn;
 
 
 
@@ -61,6 +65,14 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        liveBtn = view.findViewById(R.id.livevid);
+        liveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goVideoActivity();
+            }
+        });
 
        //init firebase
        firebaseAuth = FirebaseAuth.getInstance();
@@ -122,6 +134,13 @@ public class ProfileFragment extends Fragment {
 
         return view;
     }
+
+    private void goVideoActivity() {
+        Intent i = new Intent(getActivity(), VideoActivity.class);
+        startActivity(i);
+        getActivity().finish();
+    }
+
     private void checkUserStatus(){
         //get current user
         FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -155,6 +174,10 @@ public class ProfileFragment extends Fragment {
         if(id==R.id.action_logout){
             firebaseAuth.signOut();
             checkUserStatus();
+        }
+        if(id == R.id.action_add){
+            startActivity(new Intent(getActivity(), AddPostActivity.class));
+
         }
        return super.onOptionsItemSelected(item);
     }
