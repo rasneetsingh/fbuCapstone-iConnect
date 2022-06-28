@@ -54,6 +54,8 @@ public class LoginActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Log in");
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
 
 
         //enable back button
@@ -139,7 +141,7 @@ public class LoginActivity extends AppCompatActivity {
                                 hashMap.put("uid", uid);
                                 hashMap.put("name", "" );
                                 hashMap.put("bio", "" );
-                                hashMap.put("school name", "");
+                                hashMap.put("school", "");
                                 hashMap.put("image", "");
 
                                 //firebase database instance

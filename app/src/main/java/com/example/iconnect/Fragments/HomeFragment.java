@@ -1,7 +1,6 @@
 package com.example.iconnect.Fragments;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,10 +17,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.iconnect.Adapters.AdapterPosts;
+import com.example.iconnect.Adapters.Users;
 import com.example.iconnect.AddPostActivity;
 import com.example.iconnect.MainActivity;
 import com.example.iconnect.Models.ModelPost;
@@ -37,7 +37,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
 public class HomeFragment extends Fragment {
@@ -53,14 +52,10 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     public static HomeFragment newInstance(String param1, String param2) {
 
         return null;
     }
-
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -129,14 +124,86 @@ public class HomeFragment extends Fragment {
     public void onCreateOptionsMenu( @NonNull Menu menu,  @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_main, menu);
 
-        //searchview to serach posts by post title/description
+        //searchview to search posts by post title/description
         MenuItem item = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
-        //search listsner
+        //search listener
+
+        //search listener
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //called when user press any search button from keyboard
+                //if query is not empty then search
+                if(!TextUtils.isEmpty(query.trim())){
+                    //search text contains text.
+                    searchPosts(query);
+
+                }
+                else{
+                    //search all text, get all users
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                //called whenever user press any single letter
+
+                if(!TextUtils.isEmpty(query.trim())){
+                    //search text contains text.
+                    searchPosts(query);
+
+                }
+                else{
+                    //search all text, get all users
+                }
+                return false;
+            }
+        });
 
 
         super.onCreateOptionsMenu(menu, inflater);
 
+    }
+
+    private void searchPosts(String query) {
+
+        //get current user
+        FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+        //get path of database named "users" containing users info
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
+        //get all data from path
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                postList.clear();
+                for(DataSnapshot ds: snapshot.getChildren()){
+                    ModelPost modelPost= ds.getValue(ModelPost.class);
+
+                    //search by condition: name, email
+                    //get all searched users except currently signed in user
+                    if(!modelPost.getuid().equals(fUser.getUid())){
+                        if(modelPost.getpTitle().toLowerCase().contains(query.toLowerCase())){
+                            postList.add(modelPost);
+
+                        }
+                    }
+                    //adapter
+                    adapterPosts = new AdapterPosts(getActivity(), postList);
+                    //refresh adapter
+                    adapterPosts.notifyDataSetChanged();
+                    //set adapter to recycler view
+                    recyclerView.setAdapter(adapterPosts);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override
@@ -153,7 +220,6 @@ public class HomeFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 
     private void checkUserStatus() {

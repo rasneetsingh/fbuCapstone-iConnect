@@ -76,7 +76,6 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
         }catch(Exception e){
 
 
-
         }
 
         //set seen/delivered status of message
@@ -94,10 +93,6 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
             holder.isSeenTv.setVisibility(View.GONE);
 
         }
-
-
-
-
 
     }
 
@@ -118,14 +113,12 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
         }
 
     }
-
     //view holder class
     class MyHolder extends RecyclerView.ViewHolder {
 
         //views
         ImageView profileIv;
         TextView messageTv, timeTv, isSeenTv;
-
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);

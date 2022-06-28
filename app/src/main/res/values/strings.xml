@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">iConnect</string>
     <string name="home">Home</string>
-    <string name="save">Saved</string>
+    <string name="save">Users</string>
     <string name="create">Create</string>
     <string name="profile">Profile</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -11,6 +11,7 @@
     <string name="createfragment"> hello create</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="google_maps_api_key"> AIzaSyCZ3E-xEQqcWccJqAQaAR2zo_4DZshOCT0 </string>
 
 
 </resources>

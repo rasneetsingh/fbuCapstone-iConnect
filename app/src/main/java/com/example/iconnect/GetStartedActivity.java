@@ -55,10 +55,6 @@ public class GetStartedActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
     }
 
     @Override

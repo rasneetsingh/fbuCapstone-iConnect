@@ -48,12 +48,9 @@ public class UsersFragment extends Fragment {
 
     FirebaseAuth firebaseAuth;
 
-
-
     public UsersFragment() {
         // Required empty public constructor
     }
-
 
 
     @Override

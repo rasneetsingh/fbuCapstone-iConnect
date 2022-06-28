@@ -29,9 +29,7 @@ import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity {
 
-
     //views
-
     EditText etEmail;
     EditText etPassword;
     Button registerbtn;
@@ -39,7 +37,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     //progressbar to display while registering user
     ProgressDialog progressDialog;
-
 
     //declare an instance of firebaseauth
     private FirebaseAuth mAuth;
@@ -50,8 +47,6 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.iConnect)));
-
-
 
 
         //Actionbar and its title
@@ -112,8 +107,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
 
-
-
     }
 
     private void registerUser(String email, String password) {
@@ -139,7 +132,7 @@ public class RegisterActivity extends AppCompatActivity {
                             hashMap.put("uid", uid);
                             hashMap.put("name", "" );
                             hashMap.put("bio", "" );
-                            hashMap.put("school name", "");
+                            hashMap.put("school", "");
                             hashMap.put("image", "");
 
                             //firebase database instance

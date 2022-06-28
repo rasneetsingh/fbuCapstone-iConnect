@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.example.iconnect.AddPostActivity;
 import com.example.iconnect.DashboardActivity;
 import com.example.iconnect.MainActivity;
+import com.example.iconnect.MapActivity;
 import com.example.iconnect.R;
 import com.example.iconnect.VideoActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,6 +50,7 @@ public class ProfileFragment extends Fragment {
     TextView tvEmail;
     TextView tvschool;
     Button liveBtn;
+    Button mapBtn;
 
 
 
@@ -66,11 +68,22 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+
+
+
         liveBtn = view.findViewById(R.id.livevid);
         liveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goVideoActivity();
+            }
+        });
+
+        mapBtn = view.findViewById(R.id.map);
+        mapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goMapActivity();
             }
         });
 
@@ -133,6 +146,13 @@ public class ProfileFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void goMapActivity() {
+        Intent i = new Intent(getActivity(), MapActivity.class);
+        startActivity(i);
+        getActivity().finish();
+
     }
 
     private void goVideoActivity() {

@@ -50,7 +50,6 @@ import java.util.Objects;
 public class AddPostActivity extends AppCompatActivity {
 
     ActionBar actionBar;
-
     FirebaseAuth firebaseAuth;
     DatabaseReference userDbRef;
 
@@ -85,7 +84,6 @@ public class AddPostActivity extends AppCompatActivity {
     ProgressDialog pd;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,7 +112,7 @@ public class AddPostActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         checkUserStatus();
 
-        actionBar.setSubtitle(email);
+        actionBar.setSubtitle(name);
 
         //get some info of current user to include in post
         userDbRef = FirebaseDatabase.getInstance().getReference("Users");
@@ -154,9 +152,6 @@ public class AddPostActivity extends AppCompatActivity {
                 
             }
         });
-
-
-
 
         //upload button click listener
         postbtn.setOnClickListener(new View.OnClickListener() {
@@ -253,11 +248,6 @@ public class AddPostActivity extends AppCompatActivity {
 
                             }
                         });
-
-
-
-                        
-                        
                     }
                     
                     
@@ -271,8 +261,6 @@ public class AddPostActivity extends AppCompatActivity {
                     
                 }
             });
-
-
 
         }
         else{
@@ -307,11 +295,6 @@ public class AddPostActivity extends AppCompatActivity {
                     imagepostiv.setImageURI(null);
                     image_rui= null;
 
-
-
-
-
-
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -325,8 +308,6 @@ public class AddPostActivity extends AppCompatActivity {
             });
 
         }
-
-
 
     }
 
@@ -542,7 +523,5 @@ public class AddPostActivity extends AppCompatActivity {
             finish();
         }
     }
-
-
 
 }
