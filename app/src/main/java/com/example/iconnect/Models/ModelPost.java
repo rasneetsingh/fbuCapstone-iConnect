@@ -2,7 +2,7 @@ package com.example.iconnect.Models;
 
 public class ModelPost {
 
-    String pId,pTitle, pdDescr, pLikes, pImage, pTime, uid, uEmail, uDp, uName;
+    String pId,pTitle, pdDescr, pLikes, pImage, pTime, uid, uEmail, uDp, name;
 
     public ModelPost(){
 
@@ -18,7 +18,7 @@ public class ModelPost {
         this.uid = uid;
         this.uEmail = uEmail;
         this.uDp = uDp;
-        this.uName = uName;
+        this.name = name;
     }
 
     public String getpId() {
@@ -93,11 +93,11 @@ public class ModelPost {
         this.uDp = uDp;
     }
 
-    public String getuName() {
-        return uName;
+    public String getname() {
+        return name;
     }
 
-    public void setuName(String uName) {
-        this.uName = uName;
+    public void setname(String name) {
+        this.name = name;
     }
 }

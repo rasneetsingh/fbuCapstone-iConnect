@@ -2,6 +2,10 @@ package com.example.iconnect.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.iconnect.Models.ModelPost;
@@ -25,6 +30,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -44,7 +51,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
     public AdapterPosts(Context context, List<ModelPost> postList) {
         this.context = context;
         this.postList = postList;
-        
+
         myuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         likesRef = FirebaseDatabase.getInstance().getReference().child("Likes");
         postsRef = FirebaseDatabase.getInstance().getReference().child("Posts");
@@ -68,7 +75,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         //get data
         String uid= postList.get(position).getuid();
         String uEmail = postList.get(position).getuEmail();
-        String uName = postList.get(position).getuName();
+        String uName = postList.get(position).getname();
         String uDp = postList.get(position).getuDp();
         String pId= postList.get(position).getpId();
         String pTitle = postList.get(position).getpTitle();
@@ -178,10 +185,71 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         holder.shareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "share", Toast.LENGTH_SHORT).show();
+                BitmapDrawable bitmapDrawable =(BitmapDrawable) holder.pImageIv.getDrawable();
+                if(bitmapDrawable == null){
+                    shareTextOnly(pTitle, pDescription);
+                    //post without image
+
+                }else{
+                    //post with image
+                    //convert inage to bitmap
+                    Bitmap bitmap = bitmapDrawable.getBitmap();
+                    shareImageAndText(pTitle, pDescription, bitmap);
+
+                }
+
             }
         });
 
+
+    }
+
+    private void shareImageAndText(String pTitle, String pDescription, Bitmap bitmap) {
+        //concatentae title and description to share
+        String shareBody = pTitle + "\n" + pDescription;
+
+        //first save image in cache, get the saved image uri
+        Uri uri = saveImageToShare(bitmap);
+
+        //share intent
+        Intent sintent = new Intent(Intent.ACTION_SEND);
+        sintent.putExtra(Intent.EXTRA_STREAM, uri);
+        sintent.putExtra(Intent.EXTRA_TEXT, shareBody);
+        sintent.putExtra(Intent.EXTRA_SUBJECT, "Subject here");
+        sintent.setType("image/png");
+        context.startActivity(Intent.createChooser(sintent, "Share Via"));
+    }
+
+    private Uri saveImageToShare(Bitmap bitmap) {
+        File imageFolder = new File(context.getCacheDir(), "images");
+        Uri uri = null;
+        try {
+            imageFolder.mkdirs(); //create if not exisst
+            File file = new File(imageFolder, "shared_image.png");
+
+            FileOutputStream stream = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
+            stream.flush();
+            stream.close();
+            uri = FileProvider.getUriForFile(context, "com.example.iconnect.fileprovider", file);
+        }
+        catch (Exception e) {
+            Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+
+        }
+        return uri;
+    }
+
+    private void shareTextOnly(String pTitle, String pDescription) {
+        //concatenate title and description to share
+        String shareBody = pTitle + "\n" + pDescription;
+
+        //share intent
+        Intent sIntent = new Intent (Intent.ACTION_SEND);
+        sIntent.setType("text/plain");
+        sIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject here"); //incase you share via an email
+        sIntent.putExtra(Intent.EXTRA_TEXT, shareBody); //text to share
+        context.startActivity(Intent.createChooser(sIntent, "Share Via")); //message to show in share dialog
 
     }
 

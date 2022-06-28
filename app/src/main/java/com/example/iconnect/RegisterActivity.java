@@ -30,6 +30,9 @@ import java.util.Objects;
 public class RegisterActivity extends AppCompatActivity {
 
     //views
+    EditText uname;
+    EditText countryet;
+    EditText schoolEt;
     EditText etEmail;
     EditText etPassword;
     Button registerbtn;
@@ -58,6 +61,9 @@ public class RegisterActivity extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
 
         //init
+        uname = findViewById(R.id.Username);
+        countryet = findViewById(R.id.Countryname);
+        schoolEt = findViewById(R.id.Schoolname);
         etEmail = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         registerbtn = findViewById(R.id.btnRegister);
@@ -76,6 +82,9 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //input email, password
+                String name = uname.getText().toString().trim();
+                String country = countryet.getText().toString().trim();
+                String school = schoolEt.getText().toString().trim();
                 String email = etEmail.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
                 //validate
@@ -90,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
                     etPassword.setFocusable(true);
                 }
                 else{
-                    registerUser(email, password);
+                    registerUser(email, password, name, country, school);
                 }
 
 
@@ -109,7 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void registerUser(String email, String password) {
+    private void registerUser(String email, String password, String name, String country, String school) {
         //email and password pattern is valid, show progress dialog and start registering user.
         progressDialog.show();
 
@@ -130,10 +139,11 @@ public class RegisterActivity extends AppCompatActivity {
                             //put info in hashmap
                             hashMap.put("email", email);
                             hashMap.put("uid", uid);
-                            hashMap.put("name", "" );
+                            hashMap.put("name", name );
                             hashMap.put("bio", "" );
-                            hashMap.put("school", "");
+                            hashMap.put("school", school);
                             hashMap.put("image", "");
+                            hashMap.put("country", country);
 
                             //firebase database instance
                             FirebaseDatabase database = FirebaseDatabase.getInstance();

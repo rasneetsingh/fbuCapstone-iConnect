@@ -211,7 +211,7 @@ public class AddPostActivity extends AppCompatActivity {
                         HashMap<Object, String> hashMap = new HashMap<>();
                         //put post info
                         hashMap.put("uid", uid );
-                        hashMap.put("uName",name );
+                        hashMap.put("uName",name);
                         hashMap.put("uEmail", email);
                         hashMap.put("uDp",dp);
                         hashMap.put("pId",timeStamp );
@@ -268,7 +268,7 @@ public class AddPostActivity extends AppCompatActivity {
             HashMap<Object, String> hashMap = new HashMap<>();
             //put post info
             hashMap.put("uid", uid );
-            hashMap.put("uName",name );
+            hashMap.put("uName",name);
             hashMap.put("uEmail", email);
             hashMap.put("uDp",dp);
             hashMap.put("pId",timeStamp );

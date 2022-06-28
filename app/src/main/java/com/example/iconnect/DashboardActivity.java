@@ -89,13 +89,13 @@ public class DashboardActivity extends AppCompatActivity {
                         ft3.commit();
                         return true;
 
-                    case R.id.chat:
-                        actionBar.setTitle("Chat"); //change actionbar title
-                        ChatListFragment fragment4 = new ChatListFragment();
-                        FragmentTransaction ft4 = getSupportFragmentManager().beginTransaction();
-                        ft4.replace(R.id.container, fragment4, "");
-                        ft4.commit();
-                        return true;
+//                    case R.id.chat:
+//                        actionBar.setTitle("Chat"); //change actionbar title
+//                        ChatListFragment fragment4 = new ChatListFragment();
+//                        FragmentTransaction ft4 = getSupportFragmentManager().beginTransaction();
+//                        ft4.replace(R.id.container, fragment4, "");
+//                        ft4.commit();
+//                        return true;
                 }
 
                 return false;

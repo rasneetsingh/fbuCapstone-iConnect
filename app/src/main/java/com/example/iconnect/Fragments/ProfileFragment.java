@@ -49,6 +49,7 @@ public class ProfileFragment extends Fragment {
     TextView tvName;
     TextView tvEmail;
     TextView tvschool;
+    TextView tvcountry;
     Button liveBtn;
     Button mapBtn;
 
@@ -98,6 +99,7 @@ public class ProfileFragment extends Fragment {
         tvName = view.findViewById(R.id.nameTv);
         tvschool = view.findViewById(R.id.uniTv);
         tvEmail = view.findViewById(R.id.emailTv);
+        tvcountry = view.findViewById(R.id.countryTv);
 
         Query query = databaseReference.orderByChild("email").equalTo(user.getEmail());
 
@@ -112,10 +114,11 @@ public class ProfileFragment extends Fragment {
                     String email = ""+ ds.child("email").getValue();
                     String uni = ""+ ds.child("school").getValue();
                     String image = ""+ ds.child("image").getValue();
+                    String country = ""+ds.child("country").getValue();
 
 
                     //set data
-
+                    tvcountry.setText(country);
                     tvName.setText(name);
                     tvschool.setText(uni);
                     tvEmail.setText(email);
