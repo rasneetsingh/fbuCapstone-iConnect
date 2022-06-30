@@ -2,15 +2,6 @@ package com.example.iconnect.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.core.view.MenuItemCompat;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,8 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.view.MenuItemCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.iconnect.Adapters.Users;
-import com.example.iconnect.DashboardActivity;
 import com.example.iconnect.MainActivity;
 import com.example.iconnect.Models.ModelUser;
 import com.example.iconnect.R;
@@ -43,7 +40,6 @@ public class UsersFragment extends Fragment {
     Users adapterUsers;
     List<ModelUser> userList;
 
-
     //firebase auth
 
     FirebaseAuth firebaseAuth;
@@ -51,7 +47,6 @@ public class UsersFragment extends Fragment {
     public UsersFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -185,7 +180,9 @@ public class UsersFragment extends Fragment {
                     //get all searched users except currently signed in user
                     if(!modelUser.getUid().equals(fUser.getUid())){
                         if(modelUser.getcountry().toLowerCase().contains(query.toLowerCase()) ||
-                                modelUser.getschool().toLowerCase().contains(query.toLowerCase())){
+                                modelUser.getschool().toLowerCase().contains(query.toLowerCase()) ||
+                                modelUser.getMajor().toLowerCase().contains(query.toLowerCase()) ||
+                                modelUser.getName().toLowerCase().contains(query.toLowerCase())  ){
                             userList.add(modelUser);
 
                         }

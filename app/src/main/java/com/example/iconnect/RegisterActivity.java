@@ -1,9 +1,5 @@
 package com.example.iconnect;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -14,6 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -33,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText uname;
     EditText countryet;
     EditText schoolEt;
+    EditText majorEt;
     EditText etEmail;
     EditText etPassword;
     Button registerbtn;
@@ -68,6 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         registerbtn = findViewById(R.id.btnRegister);
         haveaccount = findViewById(R.id.haveaccount);
+        majorEt = findViewById(R.id.major);
 
 
         //in the onCreate() method, initilaze the FirebaseAuth instance.
@@ -87,6 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String school = schoolEt.getText().toString().trim();
                 String email = etEmail.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
+                String major = majorEt.getText().toString().trim();
                 //validate
                 if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                     //set error and focus to email edittext
@@ -99,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
                     etPassword.setFocusable(true);
                 }
                 else{
-                    registerUser(email, password, name, country, school);
+                    registerUser(email, password, name, country, school, major);
                 }
 
 
@@ -118,7 +121,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void registerUser(String email, String password, String name, String country, String school) {
+    private void registerUser(String email, String password, String name, String country, String school, String major) {
         //email and password pattern is valid, show progress dialog and start registering user.
         progressDialog.show();
 
@@ -144,6 +147,7 @@ public class RegisterActivity extends AppCompatActivity {
                             hashMap.put("school", school);
                             hashMap.put("image", "");
                             hashMap.put("country", country);
+                            hashMap.put("major", major);
 
                             //firebase database instance
                             FirebaseDatabase database = FirebaseDatabase.getInstance();

@@ -1,20 +1,17 @@
 package com.example.iconnect;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.TextView;
-
-import com.example.iconnect.Fragments.ChatListFragment;
 import com.example.iconnect.Fragments.HomeFragment;
 import com.example.iconnect.Fragments.ProfileFragment;
 import com.example.iconnect.Fragments.UsersFragment;
@@ -89,13 +86,13 @@ public class DashboardActivity extends AppCompatActivity {
                         ft3.commit();
                         return true;
 
-//                    case R.id.chat:
-//                        actionBar.setTitle("Chat"); //change actionbar title
-//                        ChatListFragment fragment4 = new ChatListFragment();
-//                        FragmentTransaction ft4 = getSupportFragmentManager().beginTransaction();
-//                        ft4.replace(R.id.container, fragment4, "");
-//                        ft4.commit();
-//                        return true;
+                    case R.id.map:
+                        actionBar.setTitle("Map"); //change actionbar title
+                        MapFragment fragment4 = new MapFragment();
+                        FragmentTransaction ft4 = getSupportFragmentManager().beginTransaction();
+                        ft4.replace(R.id.container, fragment4, "");
+                        ft4.commit();
+                        return true;
                 }
 
                 return false;

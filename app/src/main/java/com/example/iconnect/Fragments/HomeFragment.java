@@ -2,14 +2,6 @@ package com.example.iconnect.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.view.MenuItemCompat;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,12 +12,17 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.view.MenuItemCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.iconnect.Adapters.AdapterPosts;
-import com.example.iconnect.Adapters.Users;
 import com.example.iconnect.AddPostActivity;
 import com.example.iconnect.MainActivity;
 import com.example.iconnect.Models.ModelPost;
-import com.example.iconnect.Models.ModelUser;
 import com.example.iconnect.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -184,7 +181,7 @@ public class HomeFragment extends Fragment {
                     //search by condition: name, email
                     //get all searched users except currently signed in user
                     if(!modelPost.getuid().equals(fUser.getUid())){
-                        if(modelPost.getpTitle().toLowerCase().contains(query.toLowerCase())){
+                        if(modelPost.getpTitle().toLowerCase().contains(query.toLowerCase()) || modelPost.getpdDescr().toLowerCase().contains(query.toLowerCase())){
                             postList.add(modelPost);
 
                         }

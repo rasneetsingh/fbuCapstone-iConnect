@@ -48,6 +48,20 @@
         android:padding="12dp" />
 
     <EditText
+        android:id="@+id/major"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="182dp"
+        android:background="@drawable/edit_text"
+        android:baselineAligned="false"
+        android:hint="major"
+        android:padding="12dp" />
+
+    <EditText
         android:id="@+id/etUsername"
         android:layout_width="350dp"
         android:layout_height="wrap_content"

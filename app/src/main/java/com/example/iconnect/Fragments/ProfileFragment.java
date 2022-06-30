@@ -2,11 +2,6 @@ package com.example.iconnect.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,8 +12,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.example.iconnect.AddPostActivity;
-import com.example.iconnect.DashboardActivity;
 import com.example.iconnect.MainActivity;
 import com.example.iconnect.MapActivity;
 import com.example.iconnect.R;
@@ -43,24 +41,21 @@ public class ProfileFragment extends Fragment {
     DatabaseReference databaseReference;
 
 
-
     //views from xml
     ImageView profileimg;
     TextView tvName;
     TextView tvEmail;
     TextView tvschool;
     TextView tvcountry;
+    TextView tvmajor;
     Button liveBtn;
     Button mapBtn;
-
 
 
 
     public ProfileFragment() {
         // Required empty public constructor
     }
-
-
 
 
     @Override
@@ -72,21 +67,23 @@ public class ProfileFragment extends Fragment {
 
 
 
-        liveBtn = view.findViewById(R.id.livevid);
-        liveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goVideoActivity();
-            }
-        });
+//        liveBtn = view.findViewById(R.id.livevid);
+//        liveBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                goVideoActivity();
+//            }
+//        });
 
-        mapBtn = view.findViewById(R.id.map);
+        mapBtn = view.findViewById(R.id.mapBtn);
         mapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goMapActivity();
             }
         });
+//
+//
 
        //init firebase
        firebaseAuth = FirebaseAuth.getInstance();
@@ -100,6 +97,7 @@ public class ProfileFragment extends Fragment {
         tvschool = view.findViewById(R.id.uniTv);
         tvEmail = view.findViewById(R.id.emailTv);
         tvcountry = view.findViewById(R.id.countryTv);
+        tvmajor = view.findViewById(R.id.majorTv);
 
         Query query = databaseReference.orderByChild("email").equalTo(user.getEmail());
 
@@ -115,9 +113,11 @@ public class ProfileFragment extends Fragment {
                     String uni = ""+ ds.child("school").getValue();
                     String image = ""+ ds.child("image").getValue();
                     String country = ""+ds.child("country").getValue();
+                    String major = ""+ds.child("major").getValue();
 
 
                     //set data
+                    tvmajor.setText(major);
                     tvcountry.setText(country);
                     tvName.setText(name);
                     tvschool.setText(uni);
@@ -134,10 +134,7 @@ public class ProfileFragment extends Fragment {
 
                     }
 
-
-
                 }
-
             }
 
             @Override
@@ -145,8 +142,6 @@ public class ProfileFragment extends Fragment {
 
             }
         });
-
-
 
         return view;
     }
@@ -186,8 +181,8 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_main, menu);
-        super.onCreateOptionsMenu(menu, inflater);
+//        inflater.inflate(R.menu.menu_main, menu);
+//        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override

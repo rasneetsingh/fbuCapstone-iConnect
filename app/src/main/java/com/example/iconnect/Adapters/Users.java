@@ -49,12 +49,15 @@ public class Users extends RecyclerView.Adapter<Users.MyHolder>  {
         String userEmail = userList.get(position).getEmail();
         String userschool= userList.get(position).getschool();
         String userCountry = userList.get(position).getcountry();
+        String userMajor = userList.get(position).getMajor();
 
         //set data
         holder.mNameTv.setText(userName);
         holder.mEmailTv.setText(userEmail);
         holder.mSchoolTv.setText(userschool);
         holder.mCountryTv.setText(userCountry);
+        holder.mMajorTv.setText(userMajor);
+
 
         try{
             Picasso.get().load(userImage)
@@ -93,6 +96,7 @@ public class Users extends RecyclerView.Adapter<Users.MyHolder>  {
         TextView mEmailTv;
         TextView mSchoolTv;
         TextView mCountryTv;
+        TextView mMajorTv;
 
 
         public MyHolder(@NonNull View itemView) {
@@ -104,6 +108,7 @@ public class Users extends RecyclerView.Adapter<Users.MyHolder>  {
             mEmailTv = itemView.findViewById(R.id.userPemail);
             mSchoolTv = itemView.findViewById(R.id.userPSchoolname);
             mCountryTv = itemView.findViewById(R.id.userPCountryname);
+            mMajorTv = itemView.findViewById(R.id.userMajor);
 
         }
     }

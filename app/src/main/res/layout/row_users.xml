@@ -56,6 +56,14 @@
                 android:textColor="@color/black" />
 
 
+            <TextView
+                android:id="@+id/userMajor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Computer Science"
+                android:textColor="@color/black" />
+
+
 
         </LinearLayout>
 

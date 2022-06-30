@@ -11,7 +11,8 @@
     <string name="createfragment"> hello create</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="google_maps_api_key"> AIzaSyCZ3E-xEQqcWccJqAQaAR2zo_4DZshOCT0 </string>
+    <string name="google_maps_api_key" translatable="false"> AIzaSyCZ3E-xEQqcWccJqAQaAR2zo_4DZshOCT0 </string>
+    <string name="title_activity_maps">MapsActivity</string>
 
 
 </resources>
