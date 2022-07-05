@@ -26,8 +26,8 @@
             android:id="@+id/imageIv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/iConnect"
-            android:minHeight="200dp" />
+            android:background="@color/white"
+            android:minHeight="0dp" />
 
 <!--        post description-->
 

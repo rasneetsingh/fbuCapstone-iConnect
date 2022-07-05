@@ -71,8 +71,8 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
     public void onBindViewHolder(@NonNull final MyHolder holder, @SuppressLint("RecyclerView") int position) {
         //get data
         String uid= postList.get(position).getuid();
-        String uEmail = postList.get(position).getuEmail();
-        String uName = postList.get(position).getname();
+        String pEmail = postList.get(position).getpEmail();
+        String pName = postList.get(position).getpName();
         String uDp = postList.get(position).getuDp();
         String pId= postList.get(position).getpId();
         String pTitle = postList.get(position).getpTitle();
@@ -88,7 +88,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         String pTime = DateFormat.format("dd/MM/yyyy hh:mm aa", calendar).toString();
 
         //set data
-        holder.unameTv.setText(uName);
+        holder.unameTv.setText(pName);
         holder.pTimeTv.setText(pTime);
         holder.pTitleTv.setText(pTitle);
         holder.pDescriptionTv.setText(pDescription);

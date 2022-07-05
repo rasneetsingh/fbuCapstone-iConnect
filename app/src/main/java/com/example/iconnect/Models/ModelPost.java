@@ -2,13 +2,13 @@ package com.example.iconnect.Models;
 
 public class ModelPost {
 
-    String pId,pTitle, pdDescr, pLikes, pImage, pTime, uid, uEmail, uDp, name;
+    String pId,pTitle, pdDescr, pLikes, pImage, pTime, uid, pEmail, uDp, pName;
 
     public ModelPost(){
 
     }
 
-    public ModelPost(String pId, String pTitle, String pdDescr, String pLikes, String pImage, String pTime, String uid, String uEmail, String uDp, String uName) {
+    public ModelPost(String pId, String pTitle, String pdDescr, String pLikes, String pImage, String pTime, String uid, String pEmail, String uDp, String pName) {
         this.pId = pId;
         this.pTitle = pTitle;
         this.pdDescr = pdDescr;
@@ -16,9 +16,9 @@ public class ModelPost {
         this.pImage = pImage;
         this.pTime = pTime;
         this.uid = uid;
-        this.uEmail = uEmail;
+        this.pEmail = pEmail;
         this.uDp = uDp;
-        this.name = name;
+        this.pName = pName;
     }
 
     public String getpId() {
@@ -77,12 +77,12 @@ public class ModelPost {
         this.uid = uid;
     }
 
-    public String getuEmail() {
-        return uEmail;
+    public String getpEmail() {
+        return pEmail;
     }
 
-    public void setuEmail(String uEmail) {
-        this.uEmail = uEmail;
+    public void setpEmail(String pEmail) {
+        this.pEmail = pEmail;
     }
 
     public String getuDp() {
@@ -93,11 +93,11 @@ public class ModelPost {
         this.uDp = uDp;
     }
 
-    public String getname() {
-        return name;
+    public String getpName() {
+        return pName;
     }
 
-    public void setname(String name) {
-        this.name = name;
+    public void setpName(String pName) {
+        this.pName = pName;
     }
 }

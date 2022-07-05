@@ -49,10 +49,10 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static HomeFragment newInstance(String param1, String param2) {
-
-        return null;
-    }
+//    public static HomeFragment newInstance(String param1, String param2) {
+//
+//        return null;
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -115,7 +115,7 @@ public class HomeFragment extends Fragment {
         setHasOptionsMenu(true); //to show menu options in fragment
         super.onCreate(savedInstanceState);
     }
-    //infllate options menu
+    //inflate options menu
 
     @Override
     public void onCreateOptionsMenu( @NonNull Menu menu,  @NonNull MenuInflater inflater) {

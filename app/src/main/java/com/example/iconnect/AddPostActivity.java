@@ -71,7 +71,7 @@ public class AddPostActivity extends AppCompatActivity {
     Button postbtn;
 
     //user info
-    String name, email, uid, dp;
+    String pname, pemail, uid, dp;
 
 
     //image picked will be same in this uri
@@ -105,21 +105,20 @@ public class AddPostActivity extends AppCompatActivity {
         pd = new ProgressDialog(this);
 
 
-
         firebaseAuth = FirebaseAuth.getInstance();
         checkUserStatus();
 
-        actionBar.setSubtitle(name);
+        actionBar.setSubtitle(pname);
 
         //get some info of current user to include in post
         userDbRef = FirebaseDatabase.getInstance().getReference("Users");
-        Query query = userDbRef.orderByChild("email").equalTo(email);
+        Query query = userDbRef.orderByChild("email").equalTo(pemail);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot ds:snapshot.getChildren()){
-                    name = ""+ ds.child("name").getValue();
-                    email = ""+ ds.child("email").getValue();
+                    pname = ""+ ds.child("name").getValue();
+                    pemail = ""+ ds.child("email").getValue();
                     dp = ""+ ds.child("image").getValue();
 
                 }
@@ -132,13 +131,11 @@ public class AddPostActivity extends AppCompatActivity {
             }
         });
 
-
         //init views
         titleEt = findViewById(R.id.TitleEt);
         imagepostiv = findViewById(R.id.imageIv);
         descriptionEt = findViewById(R.id.describeEt);
         postbtn = findViewById(R.id.postBtn);
-
 
         //get image from camera/gallery on click
         imagepostiv.setOnClickListener(new View.OnClickListener() {
@@ -146,7 +143,7 @@ public class AddPostActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //show imagepick dialog
                 showImagePickDialog();
-                
+
             }
         });
 
@@ -189,8 +186,8 @@ public class AddPostActivity extends AppCompatActivity {
         //for post image name, post-id, post publish time
         String timeStamp = String.valueOf(System.currentTimeMillis());
         String filePathAndName = "Posts/" + "post_" + timeStamp;
-        
-        
+
+
         if (!uri.equals("noImage")){
             //post with image
             StorageReference ref = FirebaseStorage.getInstance().getReference().child(filePathAndName);
@@ -201,15 +198,15 @@ public class AddPostActivity extends AppCompatActivity {
                     Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
                     while(!uriTask.isSuccessful());
                     String downloadUri = uriTask.getResult().toString();
-                    
+
                     if(uriTask.isSuccessful()){
                         //url is received upload post to firebase database
 
                         HashMap<Object, String> hashMap = new HashMap<>();
                         //put post info
                         hashMap.put("uid", uid );
-                        hashMap.put("uName",name);
-                        hashMap.put("uEmail", email);
+                        hashMap.put("pName",pname);
+                        hashMap.put("pEmail", pemail);
                         hashMap.put("uDp",dp);
                         hashMap.put("pId",timeStamp );
                         hashMap.put("pTitle",title );
@@ -246,8 +243,8 @@ public class AddPostActivity extends AppCompatActivity {
                             }
                         });
                     }
-                    
-                    
+
+
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -255,7 +252,7 @@ public class AddPostActivity extends AppCompatActivity {
                     //failed uploading image
                     pd.dismiss();
                     Toast.makeText(AddPostActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                    
+
                 }
             });
 
@@ -265,10 +262,10 @@ public class AddPostActivity extends AppCompatActivity {
             HashMap<Object, String> hashMap = new HashMap<>();
             //put post info
             hashMap.put("uid", uid );
-            hashMap.put("uName",name);
-            hashMap.put("uEmail", email);
+            hashMap.put("pName",pname);
+            hashMap.put("pEmail", pemail);
             hashMap.put("uDp",dp);
-            hashMap.put("pId",timeStamp );
+            hashMap.put("pId",timeStamp);
             hashMap.put("pTitle",title );
             hashMap.put("pdDescr", description);
             hashMap.put("pImage", "noImage" );
@@ -511,7 +508,7 @@ public class AddPostActivity extends AppCompatActivity {
         if(user != null){
             // user is signed in stay here
             //mProfileTv.setText(user.getEmail());
-            email= user.getUid();
+            pemail= user.getEmail();
             uid = user.getUid();
         }
         else{
