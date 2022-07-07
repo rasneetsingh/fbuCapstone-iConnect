@@ -2,13 +2,13 @@ package com.example.iconnect.Models;
 
 public class ModelPost {
 
-    String pId,pTitle, pdDescr, pLikes, pImage, pTime, uid, pEmail, uDp, pName;
+    String pId,pTitle, pdDescr, pLikes, pImage, pTime, uid, pEmail, uDp, pName, pComments;
 
     public ModelPost(){
 
     }
 
-    public ModelPost(String pId, String pTitle, String pdDescr, String pLikes, String pImage, String pTime, String uid, String pEmail, String uDp, String pName) {
+    public ModelPost(String pId, String pTitle, String pdDescr, String pLikes, String pImage, String pTime, String uid, String pEmail, String uDp, String pName, String pComments) {
         this.pId = pId;
         this.pTitle = pTitle;
         this.pdDescr = pdDescr;
@@ -19,6 +19,15 @@ public class ModelPost {
         this.pEmail = pEmail;
         this.uDp = uDp;
         this.pName = pName;
+        this.pComments=pComments;
+    }
+
+    public String getpComments() {
+        return pComments;
+    }
+
+    public void setpComments(String pComments) {
+        this.pComments = pComments;
     }
 
     public String getpId() {

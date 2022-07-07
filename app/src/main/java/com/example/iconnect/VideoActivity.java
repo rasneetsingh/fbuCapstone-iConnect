@@ -1,9 +1,9 @@
 package com.example.iconnect;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
 
 public class VideoActivity extends AppCompatActivity {
 
@@ -21,7 +21,6 @@ public class VideoActivity extends AppCompatActivity {
         //enable back button
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-
 
     }
 

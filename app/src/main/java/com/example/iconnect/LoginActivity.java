@@ -1,7 +1,5 @@
 package com.example.iconnect;
 
-import static android.content.ContentValues.TAG;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -19,6 +17,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -30,6 +34,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -42,6 +47,10 @@ import java.util.Objects;
 public class LoginActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 100;
+    private static final String TAG = "FACEBOOK";
+    private CallbackManager mCallbackManager;
+
+
     GoogleSignInClient mGoogleSignInClient;
 
 
@@ -51,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView noaccount;
     ProgressDialog pd;
     SignInButton mGoogleLogin;
+    LoginButton facebookLogin;
 
 
     //declare an instance of firebaseAuth
@@ -73,6 +83,8 @@ public class LoginActivity extends AppCompatActivity {
         //enable back button
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+
 
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -143,6 +155,28 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        mCallbackManager = CallbackManager.Factory.create();
+        facebookLogin = findViewById(R.id.facebookLogin);
+        facebookLogin.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                handleFacebookAccessToken(loginResult.getAccessToken());
+
+
+            }
+
+            @Override
+            public void onCancel() {
+                Toast.makeText(LoginActivity.this, "Login Cancelled", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onError(@NonNull FacebookException e) {
+
+            }
+        });
+
 
         //init progress dialog
         pd= new ProgressDialog(this);
@@ -151,6 +185,30 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
+
+
+    private void handleFacebookAccessToken(AccessToken accessToken) {
+        AuthCredential credential = FacebookAuthProvider.getCredential(accessToken.getToken());
+        mAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(LoginActivity.this, "Log in Successful", Toast.LENGTH_SHORT).show();
+                    FirebaseUser user = mAuth.getCurrentUser();
+
+                    Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                }
+                else{
+                    Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+    }
+
+
 
     private void loginUser(String email, String password) {
         //show progress dialog
@@ -186,8 +244,6 @@ public class LoginActivity extends AppCompatActivity {
                                 reference.child(uid).setValue(hashMap);
 
                             }
-
-
 
                             //dismiss progress dialog
                             pd.dismiss();
@@ -227,6 +283,9 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
 
         //result returned from launching the intent from googlesignin api
 

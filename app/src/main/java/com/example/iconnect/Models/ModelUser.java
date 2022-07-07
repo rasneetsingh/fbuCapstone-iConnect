@@ -2,7 +2,7 @@ package com.example.iconnect.Models;
 
 public class ModelUser {
 
-    String name, email, image, uid, school, country, major;
+    String name, email, image, uid, school, country, major, work;
 
     public ModelUser(){
 
@@ -16,7 +16,7 @@ public class ModelUser {
         this.uid = uid;
     }
 
-    public ModelUser(String name, String email, String image, String school, String country, String major) {
+    public ModelUser(String name, String email, String image, String school, String country, String major, String work) {
         this.name = name;
         this.email = email;
         this.image = image;
@@ -24,6 +24,7 @@ public class ModelUser {
         this.school = school;
         this.country = country;
         this.major = major;
+        this.work = work;
     }
 
     public String getMajor() {
@@ -50,8 +51,6 @@ public class ModelUser {
         this.country = country;
     }
 
-
-
     public String getName() {
         return name;
     }
@@ -76,4 +75,11 @@ public class ModelUser {
         this.image = image;
     }
 
+    public String getWork() {
+        return work;
+    }
+
+    public void setWork(String work) {
+        this.work = work;
+    }
 }

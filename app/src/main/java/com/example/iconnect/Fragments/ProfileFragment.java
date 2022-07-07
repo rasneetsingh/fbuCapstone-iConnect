@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,7 +28,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 
 public class ProfileFragment extends Fragment {
@@ -42,12 +40,13 @@ public class ProfileFragment extends Fragment {
 
 
     //views from xml
-    ImageView profileimg;
+    //ImageView profileimg;
     TextView tvName;
     TextView tvEmail;
     TextView tvschool;
     TextView tvcountry;
     TextView tvmajor;
+    TextView tvwork;
     Button liveBtn;
     Button mapBtn;
 
@@ -92,12 +91,13 @@ public class ProfileFragment extends Fragment {
        databaseReference = firebaseDatabase.getReference("Users");
 
        //init views
-        profileimg = view.findViewById(R.id.profileimg);
+        //profileimg = view.findViewById(R.id.profileimg);
         tvName = view.findViewById(R.id.nameTv);
         tvschool = view.findViewById(R.id.uniTv);
         tvEmail = view.findViewById(R.id.emailTv);
         tvcountry = view.findViewById(R.id.countryTv);
         tvmajor = view.findViewById(R.id.majorTv);
+        tvwork = view.findViewById(R.id.workTv);
 
         Query query = databaseReference.orderByChild("email").equalTo(user.getEmail());
 
@@ -111,28 +111,30 @@ public class ProfileFragment extends Fragment {
                     String name = ""+ ds.child("name").getValue();
                     String email = ""+ ds.child("email").getValue();
                     String uni = ""+ ds.child("school").getValue();
-                    String image = ""+ ds.child("image").getValue();
+                    //String image = ""+ ds.child("image").getValue();
                     String country = ""+ds.child("country").getValue();
                     String major = ""+ds.child("major").getValue();
+                    String work = ""+ds.child("work").getValue();
 
 
                     //set data
+                    tvwork.setText(work);
                     tvmajor.setText(major);
                     tvcountry.setText(country);
                     tvName.setText(name);
                     tvschool.setText(uni);
                     tvEmail.setText(email);
-                    try{
-                        //if image is received then set
-                        Picasso.get().load(image).into(profileimg);
-
-                    }
-                    catch(Exception e){
-                        //if there is any exception while getting image then set default.
-                        Picasso.get().load(R.drawable.ic_default_img).into(profileimg);
-
-
-                    }
+//                    try{
+//                        //if image is received then set
+//                        Picasso.get().load(image).into(profileimg);
+//
+//                    }
+//                    catch(Exception e){
+//                        //if there is any exception while getting image then set default.
+//                        Picasso.get().load(R.drawable.ic_default_img).into(profileimg);
+//
+//
+//                    }
 
                 }
             }

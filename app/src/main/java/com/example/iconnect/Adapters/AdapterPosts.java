@@ -21,6 +21,7 @@ import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.iconnect.Models.ModelPost;
+import com.example.iconnect.PostDetailsActivity;
 import com.example.iconnect.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -80,6 +81,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         String pImage = postList.get(position).getpImage();
         String pTimeStamp = postList.get(position).getpTime();
         String pLikes = postList.get(position).getpLikes();
+        String pComments =postList.get(position).getpComments();
 
         //convert time stamp to dd/mm//yy hh:mm am/pm
 
@@ -93,6 +95,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         holder.pTitleTv.setText(pTitle);
         holder.pDescriptionTv.setText(pDescription);
         holder.pLikesTv.setText(pLikes + " Likes");
+        holder.pCommentsTv.setText(pComments + "Comments");
 
 
         //setlikes for each post
@@ -154,7 +157,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
                             }
                             else{
                                 //not liked, like it
-                                postsRef.child(postIde).child("pLikes").setValue(""+(pLikes)+1);
+                                postsRef.child(postIde).child("pLikes").setValue(""+(pLikes+1));
                                 likesRef.child(postIde).child(myuid).setValue("Liked"); //set any value
                                 mProcessLike = false;
 
@@ -177,8 +180,15 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "comment", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, PostDetailsActivity.class);
+                intent.putExtra("postId", pId);
+                context.startActivity(intent);
             }
         });
+
+
+
+
         holder.shareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -288,7 +298,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         //views from row_posts.xml
 
         ImageView uPictureIv, pImageIv;
-        TextView unameTv, pTimeTv, pTitleTv, pDescriptionTv, pLikesTv;
+        TextView unameTv, pTimeTv, pTitleTv, pDescriptionTv, pLikesTv, pCommentsTv;
         ImageButton moreBtn;
         Button likeBtn, commentBtn, shareBtn;
 
@@ -307,6 +317,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
             likeBtn = itemView.findViewById(R.id.likeBtn);
             shareBtn = itemView.findViewById(R.id.shareBtn);
             commentBtn = itemView.findViewById(R.id.commentBtn);
+            pCommentsTv = itemView.findViewById(R.id.pcomments);
 
 
         }
