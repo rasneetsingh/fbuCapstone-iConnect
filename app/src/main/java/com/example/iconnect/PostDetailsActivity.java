@@ -2,6 +2,7 @@ package com.example.iconnect;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
@@ -19,7 +20,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.iconnect.Adapters.AdapterComments;
+import com.example.iconnect.Models.ModelComment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,9 +37,12 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class PostDetailsActivity extends AppCompatActivity {
 
@@ -57,15 +65,21 @@ public class PostDetailsActivity extends AppCompatActivity {
     ImageButton moreBtn;
     Button likeBtn, shareBtn;
     LinearLayout profileLayout;
+    RecyclerView recyclerView;
+
+    List<ModelComment> commentList;
+    AdapterComments adapterComments;
 
     EditText commentEt;
-    ImageButton sendBtn;
+    Button sendBtn;
     ImageView cAvatarIv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_details);
+
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar)));
 
         //Actionbar and its proerties
 
@@ -92,15 +106,17 @@ public class PostDetailsActivity extends AppCompatActivity {
         moreBtn = findViewById(R.id.moreBtn);
         likeBtn = findViewById(R.id.likeBtn);
         shareBtn= findViewById(R.id.shareBtn);
+        recyclerView = findViewById(R.id.recyclerView);
 
 
         commentEt = findViewById(R.id.commentEt);
         sendBtn = findViewById(R.id.sendBtn);
-        cAvatarIv = findViewById(R.id.sendBtn);
+        cAvatarIv = findViewById(R.id.cAvatarIv);
 
         loadPostInfo();
         checkUserStatus();
         loadUserInfo();
+        loadComments();
 
         setLikes();
 
@@ -117,6 +133,45 @@ public class PostDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 likepost();
+            }
+        });
+
+    }
+
+    private void loadComments() {
+        //layout(linear) for recycler view
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        //set layout to recycler view
+
+        recyclerView.setLayoutManager(layoutManager);
+
+        //init comment list
+        commentList = new ArrayList<>();
+
+        //path of rhe post, to get its comments
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts").child(postId).child("Comments");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                commentList.clear();
+                for (DataSnapshot ds: snapshot.getChildren()){
+                    ModelComment modelComment = ds.getValue(ModelComment.class);
+                    commentList.add(modelComment);
+
+                    //setup adapter
+                    adapterComments = new AdapterComments(getApplicationContext(), commentList);
+                    //set adapter
+                    recyclerView.setAdapter(adapterComments);
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
@@ -151,13 +206,9 @@ public class PostDetailsActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     private void likepost() {
-
-
 
         mProcessLike = true;
         //get id of the post clicked
@@ -198,8 +249,6 @@ public class PostDetailsActivity extends AppCompatActivity {
 
 
     }
-
-
 
     private void postComment() {
         pd = new ProgressDialog(this);
@@ -247,34 +296,30 @@ public class PostDetailsActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
 
-//    private void updateCommentCount() {
-//
-//        //mProcessComment = true;
-//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts").child(postId);
-//        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if (mProcessComment){
-//                    String comments = "" + snapshot.child("pComments").getValue();
-//                    int newCommentBal = Integer.parseInt(comments)+1;
-//                    ref.child("pComments").setValue(""+newCommentBal);
-//                    mProcessComment = false;
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//
-//
-//
-//    }
+    private void updateCommentCount() {
+
+        //mProcessComment = true;
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts").child(postId);
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (mProcessComment){
+                    String comments = "" + snapshot.child("pComments").getValue();
+                    int newCommentBal = Integer.parseInt(comments)+1;
+                    ref.child("pComments").setValue(""+newCommentBal);
+                    mProcessComment = false;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
 
     private void loadUserInfo() {
         //get user info
@@ -368,9 +413,6 @@ public class PostDetailsActivity extends AppCompatActivity {
                         Picasso.get().load(R.drawable.ic_default_img).into(uPictureIv);
 
                     }
-
-
-
 
                 }
 

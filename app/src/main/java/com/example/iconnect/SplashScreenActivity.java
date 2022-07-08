@@ -1,21 +1,18 @@
 package com.example.iconnect;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.window.SplashScreen;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    Handler handler;
-    private final int SPLASH_DISPLAY_LENGTH = 1000;
-
-
+    FirebaseUser currentUser;
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -23,23 +20,27 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        handler.postDelayed(new Runnable() {
+        if (mAuth != null) {
+            currentUser = mAuth.getCurrentUser();
+        }
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(user != null){
-                    Intent intent=new Intent(SplashScreenActivity.this,DashboardActivity.class);
+                FirebaseUser user = mAuth.getCurrentUser();
+                if (user == null) {
+                    Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
-                }else{
-                    Intent intent = new Intent(SplashScreenActivity.this , GetStartedActivity.class);
-                    startActivity(intent);
+                } else {
+                    Intent mainIntent = new Intent(SplashScreenActivity.this, DashboardActivity.class);
+                    mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(mainIntent);
                     finish();
                 }
             }
-        },SPLASH_DISPLAY_LENGTH);
+        }, 1000);
     }
+
 
 
 

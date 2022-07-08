@@ -32,7 +32,6 @@ public class DashboardActivity extends AppCompatActivity {
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +45,10 @@ public class DashboardActivity extends AppCompatActivity {
         //init
         firebaseAuth = FirebaseAuth.getInstance();
 
+
+
         actionBar.setTitle("Home"); //change actionbar title
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.iConnect)));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar)));
         HomeFragment fragment1 = new HomeFragment();
         FragmentTransaction ft1 = getSupportFragmentManager().beginTransaction();
         ft1.replace(R.id.container, fragment1, "");

@@ -1,12 +1,12 @@
 package com.example.iconnect;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,15 +23,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.iConnect)));
-
-        startedbtn = findViewById(R.id.started_btn);
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar)));
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user!= null){
             goDashboardActivity();
         }
 
+
+
+        startedbtn = findViewById(R.id.started_btn);
 
         startedbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,11 +43,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
     }
 
     private void goDashboardActivity() {
@@ -54,4 +50,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
         finish();
     }
+
+
 }

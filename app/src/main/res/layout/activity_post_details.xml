@@ -10,44 +10,41 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
             <com.blogspot.atifsoftwares.circularimageview.CircularImageView
                 android:id="@+id/uPictureIv"
-                android:src="@drawable/ic_default_img_white"
                 android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:scaleType="centerCrop"
-                android:layout_height="50dp" />
+                android:src="@drawable/ic_default_img" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/uNameTv"
-                    android:text="Name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:textSize="20dp"
-                    />
+                    android:text="Name"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/pTimeTv"
-                    android:text="40 mins"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-
-                    />
+                    android:text="40 mins" />
 
             </LinearLayout>
 
@@ -56,8 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:src="@drawable/ic_more"
-                />
+                android:src="@drawable/ic_more" />
 
         </LinearLayout>
 
@@ -65,138 +61,139 @@
             android:id="@+id/pTitleTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            android:autoLink="all"
             android:text="Title"
-            android:autoLink="all"/>
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/pDescriptionTv"
-            android:text="The description of post"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autoLink="all"
-            />
+            android:text="The description of post" />
 
 
         <ImageView
             android:id="@+id/pImageIv"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@color/white"/>
+            android:background="@color/white" />
 
         <TextView
             android:id="@+id/plikes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="1K likes"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/pcomments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="1K Comments"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#F5F0F0"/>
+            android:background="#F5F0F0" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/likeBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight ="1"
-                android:text="like"
-                android:drawablePadding="5dp"
-                android:textColor="@color/black"
-                android:drawableLeft="@drawable/ic_like"
+                android:layout_weight="1"
                 android:background="@null"
                 android:backgroundTint="@color/white"
-                />
+                android:drawableLeft="@drawable/ic_like"
+                android:drawablePadding="5dp"
+                android:text="like"
+                android:textColor="@color/black" />
 
             <Button
                 android:id="@+id/commentBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight ="1"
-                android:text="Comment"
-                android:drawablePadding="5dp"
-                android:drawableLeft="@drawable/ic_comment"
+                android:layout_weight="1"
+                android:background="@null"
                 android:backgroundTint="@color/white"
-                android:textColor="@color/black"
-                android:background="@null"/>
+                android:drawableLeft="@drawable/ic_comment"
+                android:drawablePadding="5dp"
+                android:text="Comment"
+                android:textColor="@color/black" />
 
             <Button
                 android:id="@+id/shareBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight ="1"
-                android:drawablePadding="5dp"
+                android:layout_weight="1"
+                android:background="@null"
                 android:backgroundTint="@color/white"
-                android:drawableLeft= "@drawable/ic_share"
-                android:textColor="@color/black"
+                android:drawableLeft="@drawable/ic_share"
+                android:drawablePadding="5dp"
                 android:text="Share"
-                android:background="@null"/>
-
-
+                android:textColor="@color/black" />
 
 
         </LinearLayout>
 
 
+        <!--        list of comments here-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_comment1"
+            android:drawablePadding="5dp"
+            android:padding="2dp"
+            android:text="Comments"
+            android:textColor="@color/black" />
 
-     <RelativeLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_marginTop="140dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-         <com.blogspot.atifsoftwares.circularimageview.CircularImageView
-             android:layout_width="50dp"
-             android:layout_height="50dp"
-             android:id="@+id/cAvatarIv"
-             android:src="@drawable/ic_default_img"/>
-
-         <EditText
-             android:id="@+id/commentEt"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_margin="1dp"
-             android:layout_alignParentEnd="true"
-             android:hint="Enter Comment"/>
-
-         <ImageButton
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:src="@drawable/ic_send"
-             android:id="@+id/sendBtn"
-             android:layout_alignParentEnd="true"/>
+        <RelativeLayout
+            android:id="@+id/commentsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp">
 
 
+            <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/cAvatarIv"
+                android:src="@drawable/ic_default_img"/>
 
-     </RelativeLayout>
+            <EditText
+                android:id="@+id/commentEt"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:layout_marginLeft="100dp"
+                android:hint="Enter Comment"/>
+
+            <Button
+                android:id="@+id/sendBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="300dp"
+                android:text="Send"
+                android:backgroundTint="@color/iConnect"/>
 
 
-
-
-
-
-
-
-
+        </RelativeLayout>
 
 
     </LinearLayout>
-
-
 
 </RelativeLayout>
 

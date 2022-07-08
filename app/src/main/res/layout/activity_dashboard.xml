@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:backgroundTint="@color/background_color"
     android:gravity="center"
     tools:context=".DashboardActivity">
 
@@ -14,6 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
+
+
     </FrameLayout>
 
 <!--    bottom navigation menu-->
@@ -26,9 +29,6 @@
         android:background="?android:attr/windowBackground"
         app:menu ="@menu/menu_bottom_navigation" >
     </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-
-
 
 
 

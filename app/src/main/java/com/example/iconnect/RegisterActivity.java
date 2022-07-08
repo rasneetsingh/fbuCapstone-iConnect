@@ -51,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.iConnect)));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar)));
 
 
         //Actionbar and its title
@@ -159,6 +159,7 @@ public class RegisterActivity extends AppCompatActivity {
                             hashMap.put("country", country);
                             hashMap.put("major", major);
                             hashMap.put("work", work);
+                            hashMap.put("pLikes", "0");
 
                             //firebase database instance
                             FirebaseDatabase database = FirebaseDatabase.getInstance();

@@ -16,4 +16,14 @@
     <color name="gradEnd">#67EFC8</color>
     <color name="gradStart">#63C9FF</color>
 
+
+<!--    for normal/light mode-->
+
+    <color name ="background_color"> #FFFFFF </color>
+    <color name ="text_color"> #FF000000</color>
+    <color name ="switch_color">#FF000000</color>
+    <color name ="r_name">#FFFFFF</color>
+    <color name ="edittext">#FF000000</color>
+    <color name ="actionbar">#50C2C9</color>
+
 </resources>

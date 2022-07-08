@@ -11,14 +11,13 @@
         android:id="@+id/splashtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="100dp"
         android:gravity="center"
         android:text="iConnect"
-        android:textColor="@color/iConnect"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/splashtext"/>
+        android:textColor="@color/iConnect"
+        android:textSize="100dp" />
 
 
 </RelativeLayout>

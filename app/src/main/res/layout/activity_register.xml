@@ -17,7 +17,9 @@
         android:layout_marginTop="39dp"
         android:background="@drawable/edit_text"
         android:baselineAligned="false"
-        android:hint="Enter your name"
+        android:hint="Name"
+        android:textColor="@color/edittext"
+        android:textColorHint="@color/edittext"
         android:padding="12dp" />
 
     <EditText
@@ -26,12 +28,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="117dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="101dp"
         android:background="@drawable/edit_text"
         android:baselineAligned="false"
-        android:hint="Enter your country"
+        android:textColor="@color/edittext"
+        android:textColorHint="@color/edittext"
+        android:hint="Country"
         android:padding="12dp" />
+
 
     <EditText
         android:id="@+id/Schoolname"
@@ -40,13 +45,14 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="182dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="162dp"
         android:background="@drawable/edit_text"
+        android:textColor="@color/edittext"
         android:baselineAligned="false"
-        android:hint="school name"
+        android:hint="School/College/University"
+        android:textColorHint="@color/edittext"
         android:padding="12dp" />
-
 
     <EditText
         android:id="@+id/major"
@@ -55,11 +61,13 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="245dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="225dp"
         android:background="@drawable/edit_text"
+        android:textColor="@color/edittext"
         android:baselineAligned="false"
-        android:hint="major"
+        android:textColorHint="@color/edittext"
+        android:hint="Major"
         android:padding="12dp" />
 
     <EditText
@@ -69,10 +77,12 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="333dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="288dp"
         android:background="@drawable/edit_text"
+        android:textColor="@color/edittext"
         android:baselineAligned="false"
+        android:textColorHint="@color/edittext"
         android:hint="Work"
         android:padding="12dp" />
 
@@ -82,12 +92,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="402dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="351dp"
         android:background="@drawable/edit_text"
+        android:textColor="@color/edittext"
         android:baselineAligned="false"
-        android:hint="Phone number, email or username"
+        android:textColorHint="@color/edittext"
+        android:hint="Email"
         android:padding="12dp" />
 
     <EditText
@@ -97,9 +109,11 @@
         android:layout_below="@+id/etUsername"
         android:layout_alignParentStart="true"
         android:layout_centerInParent="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/edit_text"
+        android:textColor="@color/edittext"
+        android:textColorHint="@color/edittext"
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="12dp" />
@@ -111,9 +125,10 @@
         android:layout_below="@+id/etPassword"
         android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="13dp"
         android:backgroundTint="@color/iConnect"
+        android:textColor="@color/edittext"
         android:padding="16dp"
         android:text="register"
         tools:ignore="UnknownId" />
@@ -125,15 +140,16 @@
         android:layout_below="@+id/btnRegister"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="-2dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="-6dp"
+        android:layout_marginEnd="-3dp"
         android:text="Already have account? Login"
+        android:textStyle="bold"
         android:textAlignment="center"
-        android:textColor="@color/black" />
+        android:textColor="@color/text_color" />
 
 
-    />
+
 
 
 </RelativeLayout>

@@ -53,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
 
     GoogleSignInClient mGoogleSignInClient;
 
-
     EditText loginusername;
     EditText loginpassword;
     Button loginbtn;
@@ -65,25 +64,24 @@ public class LoginActivity extends AppCompatActivity {
 
     //declare an instance of firebaseAuth
     private FirebaseAuth mAuth;
+    FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.iConnect)));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar)));
 
         //Actionbar and its title;
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Log in");
 
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-
 
         //enable back button
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-
 
 
 
@@ -93,7 +91,6 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -123,8 +120,6 @@ public class LoginActivity extends AppCompatActivity {
                     loginUser(email, password);
 
                 }
-
-
 
             }
         });
@@ -183,9 +178,7 @@ public class LoginActivity extends AppCompatActivity {
         pd.setMessage("Loggingin...");
 
 
-
     }
-
 
 
     private void handleFacebookAccessToken(AccessToken accessToken) {

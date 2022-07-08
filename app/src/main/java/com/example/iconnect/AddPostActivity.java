@@ -88,7 +88,7 @@ public class AddPostActivity extends AppCompatActivity {
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
 
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.iConnect)));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar)));
 
         actionBar = getSupportActionBar();
         actionBar.setTitle("Add New Post");
@@ -213,6 +213,7 @@ public class AddPostActivity extends AppCompatActivity {
                         hashMap.put("pdDescr", description);
                         hashMap.put("pImage", downloadUri );
                         hashMap.put("pTime",timeStamp);
+                        hashMap.put("pLikes", "0");
 
 
                         //path to store post
@@ -270,6 +271,8 @@ public class AddPostActivity extends AppCompatActivity {
             hashMap.put("pdDescr", description);
             hashMap.put("pImage", "noImage" );
             hashMap.put("pTime",timeStamp);
+            hashMap.put("pLikes", "0");
+            hashMap.put("pComments", "0");
 
 
             //path to store post

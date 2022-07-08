@@ -13,10 +13,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="268dp"
+        android:layout_marginTop="132dp"
         android:background="@drawable/edit_text"
         android:baselineAligned="false"
-        android:hint="Phone number, email or username"
+        android:textColor="@color/edittext"
+        android:hint="Email"
+        android:textColorHint="@color/edittext"
         android:padding="12dp" />
 
     <EditText
@@ -27,7 +29,9 @@
         android:layout_marginTop="20dp"
         android:layout_below="@+id/loginuser"
         android:background="@drawable/edit_text"
+        android:textColor="@color/edittext"
         android:hint="Password"
+        android:textColorHint="@color/edittext"
         android:inputType="textPassword"
         android:padding="12dp" />
 
@@ -82,8 +86,9 @@
         android:layout_marginStart="-2dp"
         android:layout_marginTop="13dp"
         android:text="Not have account? Register"
+        android:textStyle="bold"
         android:textAlignment="center"
-        android:textColor="@color/black" />
+        android:textColor="@color/text_color" />
 
 
 </RelativeLayout>

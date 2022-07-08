@@ -5,8 +5,8 @@
     <item android:id="@+id/action_logout"
         android:title="Logout" />
 
-    <item android:id="@+id/resources"
-        android:title="Resources" />
+    <item android:id="@+id/settings"
+        android:title="Settings" />
 
     <item android:id="@+id/action_search"
         android:title="Search"
@@ -16,7 +16,7 @@
 
     <item android:id="@+id/action_add"
         android:title="Add Post"
-        android:icon="@android:drawable/ic_menu_add"
+        android:icon="@drawable/ic_add3"
         app:showAsAction="always"/>
 
 

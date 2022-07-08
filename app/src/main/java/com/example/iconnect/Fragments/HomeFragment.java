@@ -24,6 +24,7 @@ import com.example.iconnect.AddPostActivity;
 import com.example.iconnect.MainActivity;
 import com.example.iconnect.Models.ModelPost;
 import com.example.iconnect.R;
+import com.example.iconnect.SettingsActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -214,6 +215,9 @@ public class HomeFragment extends Fragment {
         if(id == R.id.action_add){
             startActivity(new Intent(getActivity(), AddPostActivity.class));
 
+        }
+        if(id == R.id.settings){
+            startActivity(new Intent(getActivity(), SettingsActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
