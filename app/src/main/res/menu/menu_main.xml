@@ -19,6 +19,11 @@
         android:icon="@drawable/ic_add3"
         app:showAsAction="always"/>
 
+    <item android:id="@+id/action_create_group"
+        android:title="Create Group"
+        android:icon="@drawable/ic_groups"
+        app:showAsAction="always"/>
+
 
 
 

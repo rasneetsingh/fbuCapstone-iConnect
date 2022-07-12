@@ -21,6 +21,8 @@
         <entry key="app/src/main/res/layout/activity_create_fragment.xml" value="0.17391304347826086" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_get_started.xml" value="0.3333333333333333" />
+        <entry key="app/src/main/res/layout/activity_group_chat.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_group_create.xml" value="0.16210739614994935" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.17391304347826086" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23311897106109325" />
@@ -34,6 +36,7 @@
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_video.xml" value="0.13272543059777103" />
         <entry key="app/src/main/res/layout/fragment_chat_list.xml" value="0.10638297872340426" />
+        <entry key="app/src/main/res/layout/fragment_group_chat.xml" value="0.1347517730496454" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.17481884057971014" />
         <entry key="app/src/main/res/layout/fragment_map.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/fragment_map2.xml" value="0.15450861195542046" />
@@ -42,6 +45,9 @@
         <entry key="app/src/main/res/layout/row_chat_left.xml" value="0.1" />
         <entry key="app/src/main/res/layout/row_chat_right.xml" value="0.11820652173913043" />
         <entry key="app/src/main/res/layout/row_comments.xml" value="0.6186594202898551" />
+        <entry key="app/src/main/res/layout/row_groupchat_left.xml" value="0.19701086956521738" />
+        <entry key="app/src/main/res/layout/row_groupchat_right.xml" value="0.19701086956521738" />
+        <entry key="app/src/main/res/layout/row_groupchats_list.xml" value="0.1347517730496454" />
         <entry key="app/src/main/res/layout/row_posts.xml" value="0.1" />
         <entry key="app/src/main/res/layout/row_users.xml" value="0.14437689969604864" />
         <entry key="app/src/main/res/menu/menu_bottom_navigation.xml" value="0.26458333333333334" />

@@ -2,6 +2,7 @@
     <string name="app_name">iConnect</string>
     <string name="home">Home</string>
     <string name="save">Users</string>
+    <string name="group">Group</string>
     <string name="create">Create</string>
     <string name="profile">Profile</string>
     <!-- TODO: Remove or change this placeholder text -->

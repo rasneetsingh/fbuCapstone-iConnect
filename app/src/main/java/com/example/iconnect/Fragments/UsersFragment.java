@@ -179,8 +179,8 @@ public class UsersFragment extends Fragment {
                     //search by condition: name, email
                     //get all searched users except currently signed in user
                     if(!modelUser.getUid().equals(fUser.getUid())){
-                        if(modelUser.getcountry().toLowerCase().contains(query.toLowerCase()) ||
-                                modelUser.getschool().toLowerCase().contains(query.toLowerCase()) ||
+                        if(modelUser.getCountry().toLowerCase().contains(query.toLowerCase()) ||
+                                modelUser.getSchool().toLowerCase().contains(query.toLowerCase()) ||
                                 modelUser.getMajor().toLowerCase().contains(query.toLowerCase()) ||
                                 modelUser.getName().toLowerCase().contains(query.toLowerCase())  ){
                             userList.add(modelUser);

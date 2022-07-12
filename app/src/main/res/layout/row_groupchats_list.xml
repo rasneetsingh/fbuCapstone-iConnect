@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/background_color"
+    app:contentPadding="3dp"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="2dp"
+    android:layout_marginTop="1dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <TextView
+            android:id="@+id/groupTitleTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="Group Title"
+            android:textSize="18dp"
+            android:textColor="@color/text_color"/>
+
+        <TextView
+            android:id="@+id/nameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/groupTitleTv"
+            android:text="Name"
+            android:textColor="@color/text_color"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/messageTv"
+            android:textColor="@color/text_color"
+            android:layout_below="@id/groupTitleTv"
+            android:text="This is the message"
+            android:layout_toEndOf="@id/nameTv"
+            android:layout_marginStart="5dp"
+            android:singleLine="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/timeTv"
+            android:textColor="@color/text_color"
+            android:layout_below="@id/nameTv"
+            android:text="This is the message"
+            android:layout_marginEnd="5dp"
+            android:layout_alignParentEnd="true"
+            android:singleLine="true"/>
+
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

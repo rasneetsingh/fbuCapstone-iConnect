@@ -8,15 +8,7 @@ public class ModelUser {
 
     }
 
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
-    public ModelUser(String name, String email, String image, String school, String country, String major, String work) {
+    public ModelUser(String name, String uid, String email, String image, String school, String country, String major, String work) {
         this.name = name;
         this.email = email;
         this.image = image;
@@ -35,7 +27,7 @@ public class ModelUser {
         this.major = major;
     }
 
-    public String getschool() {
+    public String getSchool() {
         return school;
     }
 
@@ -43,13 +35,7 @@ public class ModelUser {
         this.school = school;
     }
 
-    public String getcountry() {
-        return country;
-    }
 
-    public void setcountry(String country) {
-        this.country = country;
-    }
 
     public String getName() {
         return name;
@@ -81,5 +67,21 @@ public class ModelUser {
 
     public void setWork(String work) {
         this.work = work;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

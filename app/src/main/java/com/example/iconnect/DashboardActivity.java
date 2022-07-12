@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.iconnect.Fragments.GroupChatFragment;
 import com.example.iconnect.Fragments.HomeFragment;
 import com.example.iconnect.Fragments.ProfileFragment;
 import com.example.iconnect.Fragments.UsersFragment;
@@ -87,9 +88,9 @@ public class DashboardActivity extends AppCompatActivity {
                         ft3.commit();
                         return true;
 
-                    case R.id.map:
+                    case R.id.group:
                         actionBar.setTitle("Map"); //change actionbar title
-                        MapFragment fragment4 = new MapFragment();
+                        GroupChatFragment fragment4 = new GroupChatFragment();
                         FragmentTransaction ft4 = getSupportFragmentManager().beginTransaction();
                         ft4.replace(R.id.container, fragment4, "");
                         ft4.commit();

@@ -47,8 +47,8 @@ public class Users extends RecyclerView.Adapter<Users.MyHolder>  {
         String userImage = userList.get(position).getImage();
         String userName = userList.get(position).getName();
         String userEmail = userList.get(position).getEmail();
-        String userschool= userList.get(position).getschool();
-        String userCountry = userList.get(position).getcountry();
+        String userschool= userList.get(position).getSchool();
+        String userCountry = userList.get(position).getCountry();
         String userMajor = userList.get(position).getMajor();
 
         //set data
