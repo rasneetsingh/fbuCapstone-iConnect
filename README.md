@@ -25,7 +25,7 @@ A social networking app for both prospective and current international students 
 
 **Required Must-have Stories**
 
-* Sign up
+* Sign up 
 * LogIn 
   *Google and Facebook LogIn Features
 * Edit the profile
@@ -33,13 +33,13 @@ A social networking app for both prospective and current international students 
 * Like/Comment/Share Post
 * Message
 * View someone's university (Google map Api)
+* Search User by school/country/major.
 
 
 **Optional Nice-to-have Stories**
 
-*Search User by school/country/major.
 
-*Create a group, add participants and start conversation.
+*Create a group, add participants and start conversation
 
 *Push Notification
 
