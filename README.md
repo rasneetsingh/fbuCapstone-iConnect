@@ -38,7 +38,9 @@ A social networking app for both prospective and current international students 
 **Optional Nice-to-have Stories**
 
 *Search User by school/country/major.
-* Create a group, add participants and start conversation.
+
+*Create a group, add participants and start conversation.
+
 *Push Notification
 
 
