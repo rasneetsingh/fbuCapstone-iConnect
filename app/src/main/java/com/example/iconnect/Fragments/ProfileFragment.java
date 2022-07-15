@@ -66,8 +66,6 @@ public class ProfileFragment extends Fragment {
     ProgressDialog pd;
 
 
-
-
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -313,6 +311,8 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+
+
 
 
     }

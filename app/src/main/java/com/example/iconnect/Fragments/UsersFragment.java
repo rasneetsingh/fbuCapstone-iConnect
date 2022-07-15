@@ -122,6 +122,10 @@ public class UsersFragment extends Fragment {
         //search view
 
         MenuItem item = menu.findItem(R.id.action_search);
+        menu.findItem(R.id.action_add_participant).setVisible(false);
+        menu.findItem(R.id.action_create_group).setVisible(false);
+
+
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
 
         //search listener

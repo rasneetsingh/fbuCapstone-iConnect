@@ -130,7 +130,7 @@
         android:backgroundTint="@color/iConnect"
         android:textColor="@color/edittext"
         android:padding="16dp"
-        android:text="register"
+        android:text="Sign Up"
         tools:ignore="UnknownId" />
 
     <TextView

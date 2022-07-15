@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -37,7 +39,8 @@ public class GroupChatActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference usersDbRef;
 
-    String groupId;
+    String groupId, myGroupRole="";
+
     Toolbar toolbar;
     TextView groupTitleTv;
     ImageButton attachBtn;
@@ -76,6 +79,7 @@ public class GroupChatActivity extends AppCompatActivity {
 
         loadGroupInfo();
         loadGroupMessages();
+        loadMyGroupRole();
 
 
 
@@ -96,6 +100,31 @@ public class GroupChatActivity extends AppCompatActivity {
 
 
 
+
+    }
+
+    private void loadMyGroupRole() {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Groups");
+        ref.child(groupId).child("Participants")
+                .orderByChild("uid").equalTo(firebaseAuth.getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot ds: snapshot.getChildren()){
+                            myGroupRole = ""+ds.child("role").getValue();
+                            //refresh menu items
+                            invalidateOptionsMenu();
+
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
     }
 
@@ -182,6 +211,39 @@ public class GroupChatActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        menu.findItem(R.id.action_logout).setVisible(false);
+        menu.findItem(R.id.action_create_group).setVisible(false);
+        menu.findItem(R.id.action_add).setVisible(false);
+
+        if (myGroupRole.equals("creator") || myGroupRole.equals("admin")){
+            //i am admin creator, show add person
+            menu.findItem(R.id.action_add_participant).setVisible(true);
+        }
+        else{
+            menu.findItem(R.id.action_add_participant).setVisible(false);
+        }
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+        if (id == R.id.action_add_participant){
+            Intent intent = new Intent(this, GroupParticipantsAddActivity.class);
+            intent.putExtra("groupId", groupId);
+            startActivity(intent);
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed(); //go previous activity

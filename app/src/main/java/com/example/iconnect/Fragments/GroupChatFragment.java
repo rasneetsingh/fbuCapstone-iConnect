@@ -47,9 +47,6 @@ public class GroupChatFragment extends Fragment {
     }
 
 
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -135,6 +132,11 @@ public class GroupChatFragment extends Fragment {
         inflater.inflate(R.menu.menu_main, menu);
 
         //search view
+
+        menu.findItem(R.id.action_add).setVisible(false);
+        menu.findItem(R.id.action_add_participant).setVisible(false);
+
+
 
         MenuItem item = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);

@@ -122,6 +122,9 @@ public class HomeFragment extends Fragment {
     public void onCreateOptionsMenu( @NonNull Menu menu,  @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_main, menu);
 
+        menu.findItem(R.id.action_add_participant).setVisible(false);
+        menu.findItem(R.id.action_create_group).setVisible(false);
+
         //searchview to search posts by post title/description
         MenuItem item = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);

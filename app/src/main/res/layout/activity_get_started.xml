@@ -10,7 +10,7 @@
 
     <Button
         android:id="@+id/register_btn"
-        android:text="Register"
+        android:text="Sign up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/login_btn"

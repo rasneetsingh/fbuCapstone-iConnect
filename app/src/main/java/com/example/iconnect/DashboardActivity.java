@@ -89,7 +89,7 @@ public class DashboardActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.group:
-                        actionBar.setTitle("Map"); //change actionbar title
+                        actionBar.setTitle("Group"); //change actionbar title
                         GroupChatFragment fragment4 = new GroupChatFragment();
                         FragmentTransaction ft4 = getSupportFragmentManager().beginTransaction();
                         ft4.replace(R.id.container, fragment4, "");
