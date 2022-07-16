@@ -7,24 +7,29 @@
     tools:context=".GetStartedActivity">
 
 
-
     <Button
         android:id="@+id/register_btn"
-        android:text="Sign up"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_above="@id/login_btn"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="78dp"
+        android:layout_marginBottom="15dp"
+        android:text="Sign up"
         app:backgroundTint="@color/iConnect" />
 
     <Button
         android:id="@+id/login_btn"
-        android:text="Login"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="79dp"
+        android:layout_marginBottom="414dp"
+        android:text="Login"
         app:backgroundTint="@color/iConnect" />
-
 
 
 </RelativeLayout>

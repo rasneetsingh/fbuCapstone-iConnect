@@ -86,7 +86,6 @@ public class ChatActivity extends AppCompatActivity {
         actionBar.setTitle("Chat");
 
 
-
         //enable back button
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -98,8 +97,6 @@ public class ChatActivity extends AppCompatActivity {
         //recyclerview properties
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
-
-
 
 
         Intent intent = getIntent();
@@ -114,7 +111,7 @@ public class ChatActivity extends AppCompatActivity {
 
         //search user to get that user's info
         Query userQuery = usersDbRef.orderByChild("uid").equalTo(hisUid);
-        //get user picture
+
         userQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -132,7 +129,7 @@ public class ChatActivity extends AppCompatActivity {
 
                     }
                     catch (Exception e){
-                        //there is exception getting picture, set deafult picture
+                        //there is exception getting picture, set default picture
                         Picasso.get().load(R.drawable.ic_default_img_white).into(profileIv);
 
                     }
@@ -172,9 +169,9 @@ public class ChatActivity extends AppCompatActivity {
 
     private void seenMessage() {
         userRefForSeen = FirebaseDatabase.getInstance().getReference("Chats");
-        seenListener = userRefForSeen.addValueEventListener(new ValueEventListener() {
+        seenListener = userRefForSeen.addValueEventListener(new ValueEventListener(){
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot){
                 for(DataSnapshot ds: snapshot.getChildren()){
                     ModelChat chat = ds.getValue(ModelChat.class);
                     if (chat.getReceiver().equals(myUid) && chat.getSender().equals(hisUid)){
@@ -227,7 +224,6 @@ public class ChatActivity extends AppCompatActivity {
     private void sendMessage(String message) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
-
         String timestamp = String.valueOf(System.currentTimeMillis());
 
         HashMap<String, Object> hashMap = new HashMap<>();
@@ -240,7 +236,6 @@ public class ChatActivity extends AppCompatActivity {
 
         //resetting edittext after sending message
         messageEt.setText("");
-
 
     }
 
@@ -281,8 +276,6 @@ public class ChatActivity extends AppCompatActivity {
 
         return super.onCreateOptionsMenu(menu);
 
-
-
     }
 
     @Override
@@ -296,7 +289,7 @@ public class ChatActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     @Override
-    public boolean onSupportNavigateUp() {
+    public boolean onSupportNavigateUp(){
         onBackPressed(); //go previous activity
         return super.onSupportNavigateUp();
     }

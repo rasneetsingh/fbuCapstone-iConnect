@@ -7,14 +7,16 @@
     tools:context=".MainActivity">
 
 
-
-    <LinearLayout
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/globeIv"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="79dp"
+        android:src="@drawable/globe2" />
 
     <Button
         android:id="@+id/started_btn"
@@ -23,26 +25,27 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="179dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="44dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="177dp"
         android:text="get started"
         app:backgroundTint="@color/iConnect" />
 
     <TextView
-        android:layout_width="500dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="63dp"
-        android:layout_marginEnd="82dp"
-        android:layout_marginBottom="303dp"
-        android:text="Connect with other international students"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="52dp"
+        android:layout_marginEnd="92dp"
+        android:layout_marginBottom="257dp"
+        android:fontFamily="sans-serif"
+        android:text="Connect with students globally"
         android:textColor="@color/text_color"
         android:textSize="20dp" />
-
 
 
 </RelativeLayout>

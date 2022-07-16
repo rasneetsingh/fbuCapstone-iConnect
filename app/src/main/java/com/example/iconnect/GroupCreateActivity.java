@@ -78,11 +78,10 @@ public class GroupCreateActivity extends AppCompatActivity {
         String groupDescription = groupDescr.getText().toString().trim();
 
         if(TextUtils.isEmpty(groupTitle)){
-            Toast.makeText(this, "Please enter group title", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please Enter Group Title", Toast.LENGTH_SHORT).show();
             return;
         }
         progressDialog.show();
-
 
         String g_timestamp = ""+ System.currentTimeMillis();
         createGroup(""+ g_timestamp, ""+groupTitle, ""+groupDescription);

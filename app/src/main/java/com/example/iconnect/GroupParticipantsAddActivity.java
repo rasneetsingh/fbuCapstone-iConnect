@@ -45,8 +45,6 @@ public class GroupParticipantsAddActivity extends AppCompatActivity {
         groupId = getIntent().getStringExtra("groupId");
         loadGroupInfo();
 
-
-
     }
 
     private void getAllUsers() {

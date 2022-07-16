@@ -1,6 +1,7 @@
 package com.example.iconnect.Models;
 
 public class ModelGroupChatList {
+
     String groupId, groupTitle, groupDescription, timestamp, createdBy;
 
     public ModelGroupChatList() {
