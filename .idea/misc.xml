@@ -11,6 +11,7 @@
         <entry key="app/src/main/res/drawable/background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bg_receiver.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bg_sender.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/borders.xml" value="0.1855" />
         <entry key="app/src/main/res/drawable/circle.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/circle_border.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/edit_text.xml" value="0.1" />
@@ -43,13 +44,15 @@
         <entry key="app/src/main/res/layout/fragment_map.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/fragment_map2.xml" value="0.15450861195542046" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.21481481481481482" />
+        <entry key="app/src/main/res/layout/fragment_quiz.xml" value="0.2756644085461178" />
         <entry key="app/src/main/res/layout/fragment_users.xml" value="0.17481884057971014" />
         <entry key="app/src/main/res/layout/row_chat_left.xml" value="0.1" />
         <entry key="app/src/main/res/layout/row_chat_right.xml" value="0.11820652173913043" />
-        <entry key="app/src/main/res/layout/row_comments.xml" value="0.6186594202898551" />
+        <entry key="app/src/main/res/layout/row_comments.xml" value="0.14895833333333333" />
         <entry key="app/src/main/res/layout/row_groupchat_left.xml" value="0.19701086956521738" />
         <entry key="app/src/main/res/layout/row_groupchat_right.xml" value="0.19701086956521738" />
         <entry key="app/src/main/res/layout/row_groupchats_list.xml" value="0.1347517730496454" />
+        <entry key="app/src/main/res/layout/row_notification.xml" value="0.1490036231884058" />
         <entry key="app/src/main/res/layout/row_participant_add.xml" value="0.1" />
         <entry key="app/src/main/res/layout/row_posts.xml" value="0.1" />
         <entry key="app/src/main/res/layout/row_users.xml" value="0.14437689969604864" />

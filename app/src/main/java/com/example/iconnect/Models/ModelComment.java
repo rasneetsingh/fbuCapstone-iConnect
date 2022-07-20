@@ -8,7 +8,7 @@ public class ModelComment {
 
     }
 
-    public ModelComment(String cId, String comment, String timestamp, String uid, String uEmail, String uDp, String uName) {
+    public ModelComment(String cId, String comment, String timestamp, String uid, String uEmail, String uDp, String uName, String pId) {
         this.cId = cId;
         this.comment = comment;
         this.timestamp = timestamp;
@@ -16,6 +16,7 @@ public class ModelComment {
         this.uEmail = uEmail;
         this.uDp = uDp;
         this.uName = uName;
+
     }
 
     public String getcId() {
@@ -73,4 +74,6 @@ public class ModelComment {
     public void setuName(String uName) {
         this.uName = uName;
     }
+
+
 }

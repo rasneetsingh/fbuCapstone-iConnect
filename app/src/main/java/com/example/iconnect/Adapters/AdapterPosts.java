@@ -3,37 +3,32 @@ package com.example.iconnect.Adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.iconnect.Models.ModelPost;
 import com.example.iconnect.PostDetailsActivity;
 import com.example.iconnect.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -97,37 +92,9 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         holder.pLikesTv.setText(pLikes + " Likes");
         holder.pCommentsTv.setText(pComments + "Comments");
 
-
         //setlikes for each post
         setLikes(holder, pId);
 
-        //set user dp
-
-        try{
-            Picasso.get().load(uDp).placeholder(R.drawable.ic_default_img_white).into(holder.uPictureIv);
-        }
-        catch(Exception e){
-
-
-        }
-
-        //set post image
-        //if there is no image i.E pImage.equals("noImage") then hide ImageView
-        if(pImage.equals("noImage")){
-            //hide imageview
-            holder.pImageIv.setVisibility(View.GONE);
-
-        }
-        else{
-            try{
-                Picasso.get().load(pImage).into(holder.pImageIv);
-
-            }
-            catch(Exception e){
-
-            }
-
-        }
 
         //handle button clicks
         holder.moreBtn.setOnClickListener(new View.OnClickListener() {
@@ -161,6 +128,8 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
                                 likesRef.child(postIde).child(myuid).setValue("Liked"); //set any value
                                 mProcessLike = false;
 
+                                addToHisNotifications(""+uid, ""+pId, "Liked your post");
+
                             }
                         }
 
@@ -183,6 +152,8 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
                 Intent intent = new Intent(context, PostDetailsActivity.class);
                 intent.putExtra("postId", pId);
                 context.startActivity(intent);
+
+                addToHisNotifications(""+uid, ""+pId, "Commented on your post");
             }
         });
 
@@ -192,18 +163,10 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         holder.shareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BitmapDrawable bitmapDrawable =(BitmapDrawable) holder.pImageIv.getDrawable();
-                if(bitmapDrawable == null){
+
+
                     shareTextOnly(pTitle, pDescription);
                     //post without image
-
-                }else{
-                    //post with image
-                    //convert inage to bitmap
-                    Bitmap bitmap = bitmapDrawable.getBitmap();
-                    shareImageAndText(pTitle, pDescription, bitmap);
-
-                }
 
             }
         });
@@ -211,40 +174,35 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
 
     }
 
-    private void shareImageAndText(String pTitle, String pDescription, Bitmap bitmap) {
-        //concatentae title and description to share
-        String shareBody = pTitle + "\n" + pDescription;
+    private void addToHisNotifications(String hisUid, String pId, String notification){
+        String timestamp = ""+System.currentTimeMillis();
 
-        //first save image in cache, get the saved image uri
-        Uri uri = saveImageToShare(bitmap);
+        HashMap<Object, String> hashMap = new HashMap<>();
+        hashMap.put("pId", pId);
+        hashMap.put("timestamp", timestamp);
+        hashMap.put("pUid", hisUid);
+        hashMap.put("notification", notification);
+        hashMap.put("sUid", myuid);
+        hashMap.put("sName", "");
+        hashMap.put("sEmail", "" );
 
-        //share intent
-        Intent sintent = new Intent(Intent.ACTION_SEND);
-        sintent.putExtra(Intent.EXTRA_STREAM, uri);
-        sintent.putExtra(Intent.EXTRA_TEXT, shareBody);
-        sintent.putExtra(Intent.EXTRA_SUBJECT, "Subject here");
-        sintent.setType("image/png");
-        context.startActivity(Intent.createChooser(sintent, "Share Via"));
-    }
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.child(hisUid).child("Notifications").child(timestamp).setValue(hashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
 
-    private Uri saveImageToShare(Bitmap bitmap) {
-        File imageFolder = new File(context.getCacheDir(), "images");
-        Uri uri = null;
-        try {
-            imageFolder.mkdirs(); //create if not exisst
-            File file = new File(imageFolder, "shared_image.png");
 
-            FileOutputStream stream = new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
-            stream.flush();
-            stream.close();
-            uri = FileProvider.getUriForFile(context, "com.example.iconnect.fileprovider", file);
-        }
-        catch (Exception e) {
-            Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
 
-        }
-        return uri;
+                    }
+                });
+
+
     }
 
     private void shareTextOnly(String pTitle, String pDescription) {
@@ -297,7 +255,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
 
         //views from row_posts.xml
 
-        ImageView uPictureIv, pImageIv;
+
         TextView unameTv, pTimeTv, pTitleTv, pDescriptionTv, pLikesTv, pCommentsTv;
         ImageButton moreBtn;
         Button likeBtn, commentBtn, shareBtn;
@@ -306,8 +264,8 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
             super(itemView);
 
             //init views
-            uPictureIv = itemView.findViewById(R.id.uPictureIv);
-            pImageIv = itemView.findViewById(R.id.pImageIv);
+
+
             unameTv = itemView.findViewById(R.id.uNameTv);
             pTimeTv = itemView.findViewById(R.id.pTimeTv);
             pTitleTv = itemView.findViewById(R.id.pTitleTv);

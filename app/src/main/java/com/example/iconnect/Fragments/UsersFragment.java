@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -97,7 +98,12 @@ public class UsersFragment extends Fragment {
                     //adapter
                     adapterUsers = new Users(getActivity(), userList);
                     //set adapter to recycler view
+
+
+                    GridLayoutManager layoutManager=new GridLayoutManager(getActivity(),2);
+                    recyclerView.setLayoutManager(layoutManager);
                     recyclerView.setAdapter(adapterUsers);
+
                 }
 
             }
@@ -185,7 +191,6 @@ public class UsersFragment extends Fragment {
                     if(!modelUser.getUid().equals(fUser.getUid())){
                         if(modelUser.getCountry().toLowerCase().contains(query.toLowerCase()) ||
                                 modelUser.getSchool().toLowerCase().contains(query.toLowerCase()) ||
-                                modelUser.getMajor().toLowerCase().contains(query.toLowerCase()) ||
                                 modelUser.getName().toLowerCase().contains(query.toLowerCase())  ){
                             userList.add(modelUser);
 

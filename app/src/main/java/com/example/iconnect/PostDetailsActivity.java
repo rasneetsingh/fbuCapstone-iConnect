@@ -35,7 +35,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -60,7 +59,6 @@ public class PostDetailsActivity extends AppCompatActivity {
     ProgressDialog pd;
 
 
-    ImageView uPictureIv, pImageIv;
     TextView unameTv, pTimeTiv, pTitleTv, pDescriptionTv, pLikesTv, pCommentsTv;
     ImageButton moreBtn;
     Button likeBtn, shareBtn;
@@ -81,7 +79,7 @@ public class PostDetailsActivity extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar)));
 
-        //Actionbar and its proerties
+        //Actionbar and its properties
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("PostDetail");
@@ -95,8 +93,6 @@ public class PostDetailsActivity extends AppCompatActivity {
 
 
         //init view
-        uPictureIv = findViewById(R.id.uPictureIv);
-        pImageIv = findViewById(R.id.pImageIv);
         unameTv = findViewById(R.id.uNameTv);
         pTimeTiv = findViewById(R.id.pTimeTv);
         pTitleTv = findViewById(R.id.pTitleTv);
@@ -233,6 +229,8 @@ public class PostDetailsActivity extends AppCompatActivity {
                         likesRef.child(postId).child(myUid).setValue("Liked"); //set any value
                         mProcessLike = false;
 
+                        addToHisNotifications(""+hisUid, ""+postId, "Liked your post");
+
                         //likeBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_liked, 0, 0, 0);
                         //likeBtn.setText("Liked");
 
@@ -272,7 +270,6 @@ public class PostDetailsActivity extends AppCompatActivity {
         hashMap.put("timestamp",timeStamp);
         hashMap.put("uid", myUid);
         hashMap.put("uEmail", myEmail);
-        hashMap.put("uDp", myDp);
         hashMap.put("uName", myName);
 
         //put this data in db
@@ -283,6 +280,8 @@ public class PostDetailsActivity extends AppCompatActivity {
                 Toast.makeText(PostDetailsActivity.this, "Comment Added..",Toast.LENGTH_SHORT).show();
                 commentEt.setText("");
                 //updateCommentCount();
+
+                //addToHisNotifications(""+hisUid, ""+postId, "Commented on your post");
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -321,6 +320,36 @@ public class PostDetailsActivity extends AppCompatActivity {
 
     }
 
+    private void addToHisNotifications(String hisUid, String pId, String notification){
+        String timestamp = ""+System.currentTimeMillis();
+
+        HashMap<Object, String> hashMap = new HashMap<>();
+        hashMap.put("pId", pId);
+        hashMap.put("timestamp", timestamp);
+        hashMap.put("pUid", hisUid);
+        hashMap.put("notification", notification);
+        hashMap.put("sUid", myUid);
+        hashMap.put("sName", "" );
+        hashMap.put("sEmail", "" );
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.child(hisUid).child("Notifications").child(timestamp).setValue(hashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+
+
+    }
     private void loadUserInfo() {
         //get user info
         Query myRef = FirebaseDatabase.getInstance().getReference("Users");
@@ -329,16 +358,7 @@ public class PostDetailsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds: snapshot.getChildren()){
                     myName = "" +ds.child("name").getValue();
-                    myDp = "" +ds.child("image").getValue();
 
-                    //set data
-                    try{
-                        Picasso.get().load(myDp).placeholder(R.drawable.ic_default_img).into(cAvatarIv);
-
-                    }catch(Exception e){
-                        Picasso.get().load(R.drawable.ic_default_img).into(cAvatarIv);
-
-                    }
                 }
             }
 
@@ -364,8 +384,6 @@ public class PostDetailsActivity extends AppCompatActivity {
                     String pDescr = ""+ ds.child("pdDescr").getValue();
                     pLikes = "" + ds.child("pLikes").getValue();
                     String pTimeStamp = ""+ ds.child("pTime").getValue();
-                    String pImage = ""+ ds.child("pImage").getValue();
-                    hisDp = ""+ ds.child("uDp").getValue();
                     String hisUid = ""+ds.child("uid").getValue();
                     String uEmail = ""+ds.child("uEmail").getValue();
                     hisName = ""+ds.child("pName").getValue();
@@ -385,34 +403,6 @@ public class PostDetailsActivity extends AppCompatActivity {
                     unameTv.setText(hisName);
                     pCommentsTv.setText(commentCount + "Comments");
 
-                    //set the image of user who posted
-
-                    if(pImage.equals("noImage")){
-                        //hide imageview
-                        pImageIv.setVisibility(View.GONE);
-
-                    }
-                    else{
-                        pImageIv.setVisibility(View.VISIBLE);
-                        try{
-                            Picasso.get().load(pImage).into(pImageIv);
-
-                        }
-                        catch(Exception e){
-
-                        }
-
-                    }
-
-                    //set user image in comment part
-
-                    try{
-                        Picasso.get().load(hisDp).placeholder(R.drawable.ic_default_img).into(uPictureIv);
-
-                    }catch(Exception e){
-                        Picasso.get().load(R.drawable.ic_default_img).into(uPictureIv);
-
-                    }
 
                 }
 
@@ -435,7 +425,7 @@ public class PostDetailsActivity extends AppCompatActivity {
             myUid = user.getUid();
         }
         else{
-            //user not signed in, go to getstartedactivity
+            //user not signed in, go to getstartedActivity
             startActivity(new Intent(this, GetStartedActivity.class));
             finish();
 

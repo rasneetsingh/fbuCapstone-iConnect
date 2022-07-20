@@ -80,13 +80,13 @@ public class GroupParticipantsAddActivity extends AppCompatActivity {
         });
     }
 
-    private void loadGroupInfo() {
+    private void loadGroupInfo(){
         DatabaseReference ref1 = FirebaseDatabase.getInstance().getReference("Groups");
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Groups");
         ref.orderByChild("groupId").equalTo(groupId).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot){
                 for (DataSnapshot ds: snapshot.getChildren()){
                     String groupId = ""+ds.child("groupId").getValue();
                     String groupTitle = ""+ds.child("groupTitle").getValue();

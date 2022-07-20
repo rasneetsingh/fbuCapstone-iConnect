@@ -96,11 +96,6 @@ public class GroupChatActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
-
     }
 
     private void loadMyGroupRole() {

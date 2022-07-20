@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.iconnect.Models.ModelComment;
 import com.example.iconnect.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
 import java.util.List;
@@ -48,6 +47,7 @@ public class AdapterComments extends RecyclerView.Adapter<AdapterComments.MyHold
         String comment = commentList.get(position).getComment();
         String timestamp = commentList.get(position).getTimestamp();
 
+
         Calendar calendar = Calendar.getInstance(Locale.getDefault());
         calendar.setTimeInMillis(Long.parseLong(timestamp));
         String pTime = DateFormat.format("dd/MM/yyyy hh:mm aa", calendar).toString();
@@ -57,14 +57,8 @@ public class AdapterComments extends RecyclerView.Adapter<AdapterComments.MyHold
         holder.commentTv.setText(comment);
         holder.timeTv.setText(pTime);
 
-        //set user dp
 
-        try{
-            Picasso.get().load(image).placeholder(R.drawable.ic_default_img).into(holder.avatarIv);
 
-        }catch(Exception e){
-
-        }
 
     }
 

@@ -7,15 +7,14 @@
         android:enabled="true"
         android:icon="@drawable/ic_home"
         android:title="@string/home"
-        app:showAsAction="ifRoom"
-        />
+        app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/users"
         android:enabled="true"
         android:icon="@drawable/ic_users"
         android:title="@string/save"
         app:showAsAction="ifRoom" />
-
 
     <item
         android:id="@+id/profile"
@@ -24,6 +23,12 @@
         android:title="@string/profile"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/quiz"
+        android:enabled="true"
+        android:icon="@drawable/ic_quiz"
+        android:title="Quiz"
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/group"
@@ -31,11 +36,5 @@
         android:icon="@drawable/ic_groups"
         android:title="@string/group"
         app:showAsAction="ifRoom" />
-
-
-
-
-
-
 
 </menu>

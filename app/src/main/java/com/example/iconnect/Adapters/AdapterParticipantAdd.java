@@ -22,7 +22,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,30 +54,18 @@ public class AdapterParticipantAdd extends RecyclerView.Adapter<AdapterParticipa
         //get data
         ModelUser modelUser = userList.get(position);
         String name = modelUser.getName();
-        String email = modelUser.getEmail();
-        String image = modelUser.getImage();
         String country = modelUser.getCountry();
         String school = modelUser.getSchool();
-        String major = modelUser.getMajor();
+
         String uid = modelUser.getUid();
 
         //set data
         holder.nameTv.setText(name);
-        holder.emailTv.setText(email);
-        holder.majorTv.setText(major);
+
+
         holder.schoolTv.setText(school);
         holder.countryTv.setText(country);
 
-        try{
-            Picasso.get().load(image)
-                    .placeholder(R.drawable.ic_default_img)
-                    .into(holder.avatarIv);
-
-        }
-        catch(Exception e){
-            holder.avatarIv.setImageResource(R.drawable.ic_default_img);
-
-        }
 
         checkIfAlreadyExists(modelUser, holder);
 
