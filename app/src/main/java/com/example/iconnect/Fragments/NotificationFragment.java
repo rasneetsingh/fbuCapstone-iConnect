@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-public class QuizFragment extends Fragment {
+public class NotificationFragment extends Fragment {
 
     RecyclerView notificationsRv;
 
@@ -32,7 +32,7 @@ public class QuizFragment extends Fragment {
     private AdapterNotification adapterNotification;
 
 
-    public QuizFragment() {
+    public NotificationFragment() {
         // Required empty public constructor
     }
 

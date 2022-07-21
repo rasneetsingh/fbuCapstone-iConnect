@@ -15,7 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.iconnect.Fragments.GroupChatFragment;
 import com.example.iconnect.Fragments.HomeFragment;
 import com.example.iconnect.Fragments.ProfileFragment;
-import com.example.iconnect.Fragments.QuizFragment;
+import com.example.iconnect.Fragments.NotificationFragment;
 import com.example.iconnect.Fragments.UsersFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -97,9 +97,9 @@ public class DashboardActivity extends AppCompatActivity {
                         ft4.commit();
                         return true;
 
-                    case R.id.quiz:
-                        actionBar.setTitle("Quiz"); //change actionbar title
-                        QuizFragment fragment5 = new QuizFragment();
+                    case R.id.notification:
+                        actionBar.setTitle("Notification"); //change actionbar title
+                        NotificationFragment fragment5 = new NotificationFragment();
                         FragmentTransaction ft5 = getSupportFragmentManager().beginTransaction();
                         ft5.replace(R.id.container, fragment5, "");
                         ft5.commit();

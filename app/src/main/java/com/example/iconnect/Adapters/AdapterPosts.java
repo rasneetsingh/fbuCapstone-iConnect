@@ -158,20 +158,16 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         });
 
 
-
-
         holder.shareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-                    shareTextOnly(pTitle, pDescription);
-                    //post without image
+                shareTextOnly(pTitle, pDescription);
+                //post without image
 
             }
         });
-
-
     }
 
     private void addToHisNotifications(String hisUid, String pId, String notification){

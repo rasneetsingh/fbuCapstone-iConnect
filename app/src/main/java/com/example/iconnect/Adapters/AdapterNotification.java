@@ -85,7 +85,6 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
 
 
                         }
-
                     }
 
                     @Override
@@ -108,6 +107,7 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
 
             }
         });
+
         //long press to show delete notification
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

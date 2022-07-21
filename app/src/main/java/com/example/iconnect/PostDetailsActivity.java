@@ -350,6 +350,7 @@ public class PostDetailsActivity extends AppCompatActivity {
 
 
     }
+
     private void loadUserInfo() {
         //get user info
         Query myRef = FirebaseDatabase.getInstance().getReference("Users");

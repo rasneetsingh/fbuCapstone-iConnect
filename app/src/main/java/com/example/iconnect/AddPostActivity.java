@@ -1,35 +1,23 @@
 package com.example.iconnect;
 
-import android.Manifest;
 import android.app.ProgressDialog;
-import android.content.ContentValues;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -38,9 +26,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -49,33 +34,16 @@ public class AddPostActivity extends AppCompatActivity {
 
     ActionBar actionBar;
     FirebaseAuth firebaseAuth;
-    DatabaseReference userDbRef;
-
-
-    private static final int CAMERA_REQUEST_CODE = 100;
-    private static final int STORAGE_REQUEST_CODE = 200;
-
-    //image pick constants
-    private static final int IMAGE_PICK_CAMERA_CODE = 300;
-    private static final int IMAGE_PICK_GALLERY_CODE = 400;
-
-
-    //permissions array
-    String[] cameraPermissions;
-    String[] storagePermissions;
+    DatabaseReference userDbRef, postsDbRef;
 
     //views
     EditText titleEt;
-    ImageView imagepostiv;
     EditText descriptionEt;
     Button postbtn;
 
-    //user info
-    String pname, pemail, uid, dp;
 
+    String pname, pemail, myuid, dp, uid,  pId;
 
-    //image picked will be same in this uri
-    Uri image_rui = null;
 
     //progress bar
     ProgressDialog pd;
@@ -86,7 +54,7 @@ public class AddPostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
 
-        FirebaseStorage storage = FirebaseStorage.getInstance();
+
 
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar)));
 
@@ -97,29 +65,29 @@ public class AddPostActivity extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        //init permisisons arrays
-        cameraPermissions = new String[] {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        storagePermissions = new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        myuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        //init permisisons arrays
 
         pd = new ProgressDialog(this);
-
 
         firebaseAuth = FirebaseAuth.getInstance();
         checkUserStatus();
 
         actionBar.setSubtitle(pname);
 
+
         //get some info of current user to include in post
         userDbRef = FirebaseDatabase.getInstance().getReference("Users");
-        Query query = userDbRef.orderByChild("email").equalTo(pemail);
-        query.addValueEventListener(new ValueEventListener() {
+        Query query1 = userDbRef.orderByChild("email").equalTo(pemail);
+        query1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot ds:snapshot.getChildren()){
                     pname = ""+ ds.child("name").getValue();
                     pemail = ""+ ds.child("email").getValue();
                     dp = ""+ ds.child("image").getValue();
+
 
                 }
 
@@ -133,21 +101,10 @@ public class AddPostActivity extends AppCompatActivity {
 
         //init views
         titleEt = findViewById(R.id.TitleEt);
-        imagepostiv = findViewById(R.id.imageIv);
         descriptionEt = findViewById(R.id.describeEt);
         postbtn = findViewById(R.id.postBtn);
 
-        //get image from camera/gallery on click
-        imagepostiv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //show imagepick dialog
-                showImagePickDialog();
 
-            }
-        });
-
-        //upload button click listener
         postbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,114 +122,66 @@ public class AddPostActivity extends AppCompatActivity {
 
                 }
 
-                if (image_rui == null){
-                    //post without image
-                    uploadData(title, description, "noImage");
-                }
-                else{
-                    //post with image
-                    uploadData(title, description, String.valueOf(image_rui));
-                }
+                uploadData(title, description);
+
+                addToHisNotifications(""+myuid, ""+ pId, "Added New Post");
+
+
             }
         });
 
     }
 
-    private void uploadData(String title, String description, String uri) {
+    private void addToHisNotifications(String hisUid, String pId, String notification){
+        String timestamp = ""+System.currentTimeMillis();
+
+        HashMap<Object, String> hashMap = new HashMap<>();
+        hashMap.put("pId", pId);
+        hashMap.put("timestamp", timestamp);
+        hashMap.put("pUid", uid);
+        hashMap.put("notification", notification);
+        hashMap.put("sUid", myuid);
+        hashMap.put("sName", "");
+        hashMap.put("sEmail", "" );
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.child(hisUid).child("Notifications").child(timestamp).setValue(hashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+
+
+    }
+
+    private void uploadData(String title, String description) {
         pd.setMessage("Publishing post");
         pd.show();
 
-
-        //for post image name, post-id, post publish time
         String timeStamp = String.valueOf(System.currentTimeMillis());
-        String filePathAndName = "Posts/" + "post_" + timeStamp;
 
-
-        if (!uri.equals("noImage")){
-            //post with image
-            StorageReference ref = FirebaseStorage.getInstance().getReference().child(filePathAndName);
-            ref.putFile(Uri.parse(uri)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    //image is uploaded to firebase storage, now get its url
-                    Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                    while(!uriTask.isSuccessful());
-                    String downloadUri = uriTask.getResult().toString();
-
-                    if(uriTask.isSuccessful()){
-                        //url is received upload post to firebase database
-
-                        HashMap<Object, String> hashMap = new HashMap<>();
-                        //put post info
-                        hashMap.put("uid", uid );
-                        hashMap.put("pName",pname);
-                        hashMap.put("pEmail", pemail);
-                        hashMap.put("uDp",dp);
-                        hashMap.put("pId",timeStamp );
-                        hashMap.put("pTitle",title );
-                        hashMap.put("pdDescr", description);
-                        hashMap.put("pImage", downloadUri );
-                        hashMap.put("pTime",timeStamp);
-                        hashMap.put("pLikes", "0");
-
-
-                        //path to store post
-
-                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
-                        //put data in this ref
-                        ref.child(timeStamp).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                //added in database
-                                pd.dismiss();
-                                Toast.makeText(AddPostActivity.this,"Post published", Toast.LENGTH_SHORT).show();
-                                //reset views
-                                titleEt.setText("");
-                                descriptionEt.setText("");
-                                imagepostiv.setImageURI(null);
-                                image_rui= null;
-
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-
-                                //failed adding post in database
-                                pd.dismiss();
-                                Toast.makeText(AddPostActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-
-                            }
-                        });
-                    }
-
-
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    //failed uploading image
-                    pd.dismiss();
-                    Toast.makeText(AddPostActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-
-                }
-            });
-
-        }
-        else{
-            //post without image
-            HashMap<Object, String> hashMap = new HashMap<>();
+        HashMap<Object, String> hashMap = new HashMap<>();
             //put post info
-            hashMap.put("uid", uid );
-            hashMap.put("pName",pname);
-            hashMap.put("pEmail", pemail);
-            hashMap.put("uDp",dp);
-            hashMap.put("pId",timeStamp);
-            hashMap.put("pTitle",title );
-            hashMap.put("pdDescr", description);
-            hashMap.put("pImage", "noImage" );
-            hashMap.put("pTime",timeStamp);
-            hashMap.put("pLikes", "0");
-            hashMap.put("pComments", "0");
+        hashMap.put("uid", uid );
+        hashMap.put("pName",pname);
+        hashMap.put("pEmail", pemail);
+        hashMap.put("uDp",dp);
+        hashMap.put("pId",timeStamp);
+        hashMap.put("pTitle",title );
+        hashMap.put("pdDescr", description);
+        hashMap.put("pImage", "noImage" );
+        hashMap.put("pTime",timeStamp);
+        hashMap.put("pLikes", "0");
+        hashMap.put("pComments", "0");
 
 
             //path to store post
@@ -289,8 +198,8 @@ public class AddPostActivity extends AppCompatActivity {
                     //reset views
                     titleEt.setText("");
                     descriptionEt.setText("");
-                    imagepostiv.setImageURI(null);
-                    image_rui= null;
+
+
 
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -303,98 +212,6 @@ public class AddPostActivity extends AppCompatActivity {
 
                 }
             });
-
-        }
-
-    }
-
-    private void showImagePickDialog() {
-//        camera, gallery to show in dialog
-        String[] options ={"Camera", "Gallery"};
-
-        //dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Choose Image from");
-        //set options to dialog
-        builder.setItems(options, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //item click handle
-                if(which == 0){
-                    //camera clicked
-                    if(!checkCameraPermission()){
-                        requestCameraPermission();
-                    }
-                    else{
-                        pickfromcamera();
-                    }
-                }
-                if(which==1){
-                    //gallery clicked
-                    if(!checkStoragePermission()){
-                        requestStoragePermission();
-
-                    }
-                    else{
-                        pickfromgallery();
-
-                    }
-                }
-
-            }
-        });
-        //create and show dialog
-        builder.create().show();
-    }
-
-    private void pickfromcamera() {
-
-        ContentValues cv = new ContentValues();
-        cv.put(MediaStore.Images.Media.TITLE, "Temp Pick");
-        cv.put(MediaStore.Images.Media.DESCRIPTION, "Temp Desc");
-        image_rui = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,cv);
-
-
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, image_rui);
-        startActivityForResult(intent, IMAGE_PICK_CAMERA_CODE);
-
-    }
-
-    private void pickfromgallery(){
-
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        startActivityForResult(intent, IMAGE_PICK_GALLERY_CODE);
-
-    }
-
-    private boolean checkStoragePermission(){
-        //check if storage permission is enabled or not
-        //return true if enabled
-        //return false if not enabled
-        boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
-        return result;
-    }
-
-    private void requestStoragePermission(){
-        //request runtime storage permission
-        ActivityCompat.requestPermissions(this, storagePermissions, STORAGE_REQUEST_CODE);
-
-    }
-
-    private boolean checkCameraPermission(){
-        //check if camera permission is enabled or not
-        //return true if enabled
-        //return false if not enabled
-        boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
-        boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
-        return result && result1;
-    }
-
-    private void requestCameraPermission(){
-        //request runtime camera permission
-        ActivityCompat.requestPermissions(this, cameraPermissions, CAMERA_REQUEST_CODE);
 
     }
 
@@ -439,75 +256,6 @@ public class AddPostActivity extends AppCompatActivity {
     }
 
 
-    //handle permission results
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        //this method is called when user press allow or deny from permission request dialog
-        //here we will handle permission cases (allowed and denied)
-        switch(requestCode){
-            case CAMERA_REQUEST_CODE:{
-                if(grantResults.length>0){
-                    boolean cameraAccpeted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                    boolean storageAccpeted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
-                    if (cameraAccpeted && storageAccpeted){
-                        pickfromcamera();
-
-                    }
-                    else{
-                        Toast.makeText(this, "Camera & Storage both permissions are necessary", Toast.LENGTH_SHORT).show();
-
-                    }
-
-                }
-                else{
-
-                }
-
-            }
-            break;
-            case STORAGE_REQUEST_CODE:{
-                if(grantResults.length>0){
-                    boolean storageAccepted = grantResults[0]== PackageManager.PERMISSION_GRANTED;
-                    if (storageAccepted){
-                        //stoarge permission granted
-                        pickfromgallery();
-
-                    }
-                    else{
-                        Toast.makeText(this, "Storage  permissions are necessary", Toast.LENGTH_SHORT).show();
-
-                    }
-
-                }
-                else{
-
-                }
-            }
-            break;
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        //this method will be called after picking image from camera or gallery
-        if(resultCode == RESULT_OK){
-            if (resultCode == IMAGE_PICK_GALLERY_CODE){
-                //image is picked from gallery, get uri of image
-                image_rui = data.getData();
-
-                //set to imageview
-                imagepostiv.setImageURI(image_rui);
-
-            }
-            else if(requestCode == IMAGE_PICK_CAMERA_CODE){
-                //image is picked from camera, get uri of image
-                imagepostiv.setImageURI(image_rui);
-
-            }
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
 
     private void checkUserStatus() {
         FirebaseUser user = firebaseAuth.getCurrentUser();

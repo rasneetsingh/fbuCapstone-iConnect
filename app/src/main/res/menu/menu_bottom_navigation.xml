@@ -24,10 +24,10 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/quiz"
+        android:id="@+id/notification"
         android:enabled="true"
         android:icon="@drawable/ic_quiz"
-        android:title="Quiz"
+        android:title="Notification"
         app:showAsAction="ifRoom"/>
 
     <item
