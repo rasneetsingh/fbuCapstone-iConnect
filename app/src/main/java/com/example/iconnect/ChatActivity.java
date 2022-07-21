@@ -30,7 +30,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -123,16 +122,7 @@ public class ChatActivity extends AppCompatActivity {
 
                     //set data
                     nameTv.setText(name);
-                    try{
-                        //image received, set it to imageview in toolbar
-                        Picasso.get().load(hisimage).placeholder(R.drawable.ic_default_img_white).into(profileIv);
 
-                    }
-                    catch (Exception e){
-                        //there is exception getting picture, set default picture
-                        Picasso.get().load(R.drawable.ic_default_img_white).into(profileIv);
-
-                    }
 
                 }
 
@@ -205,7 +195,7 @@ public class ChatActivity extends AppCompatActivity {
                     }
 
                     //adapter
-                    adapterChat = new AdapterChat(ChatActivity.this, chatList, hisimage);
+                    adapterChat = new AdapterChat(ChatActivity.this, chatList);
                     adapterChat.notifyDataSetChanged();
 
                     //set adapter to recyclerview

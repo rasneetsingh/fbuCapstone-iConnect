@@ -46,7 +46,6 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
     @NonNull
     @Override
     public HolderNotification onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //inflate view row_notification
 
         View view = LayoutInflater.from(context).inflate(R.layout.row_notification, parent, false);
         return new HolderNotification(view);
@@ -54,7 +53,7 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
 
     @Override
     public void onBindViewHolder(@NonNull HolderNotification holder, int position) {
-        //get and set data to views
+
 
         ModelNotification model = notificationsList.get(position);
         String name = model.getsName();
@@ -62,6 +61,7 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
         String timestamp = model.getTimestamp();
         String senderUid = model.getsUid();
         String pId = model.getpId();
+        String school = model.getSchool();
 
         Calendar calendar = Calendar.getInstance(Locale.getDefault());
         calendar.setTimeInMillis(Long.parseLong(timestamp));
@@ -76,12 +76,15 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
                         for (DataSnapshot ds: snapshot.getChildren()){
                             String name = ""+ds.child("name").getValue();
                             String email = ""+ds.child("email").getValue();
+                            String school = ""+ds.child("school").getValue();
 
                             //add to model
                             model.setsName(name);
                             model.setsEmail(email);
+                            model.setSchool(school);
 
                             holder.nameTv.setText(name);
+                            holder.schoolTv.setText(school);
 
 
                         }
@@ -125,7 +128,6 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
                             public void onSuccess(Void unused) {
                                 //deleted
                                 Toast.makeText(context, "Notification deleted..", Toast.LENGTH_SHORT).show();
-
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -160,7 +162,7 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
 
     class HolderNotification extends RecyclerView.ViewHolder{
 
-        TextView nameTv, notificationTv, timeTv;
+        TextView nameTv, notificationTv, timeTv, schoolTv;
 
         public HolderNotification(@NonNull View itemView) {
             super(itemView);
@@ -168,6 +170,7 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
             nameTv = itemView.findViewById(R.id.nameTv);
             notificationTv = itemView.findViewById(R.id.notificationTv);
             timeTv = itemView.findViewById(R.id.timeTv);
+            schoolTv = itemView.findViewById(R.id.schoolTv);
 
         }
     }

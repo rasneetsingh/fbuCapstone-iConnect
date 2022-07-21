@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="3dp"
+    app:cardCornerRadius="25dp"
     app:cardElevation="3dp"
     app:cardUseCompatPadding="true"
     app:cardBackgroundColor="@color/background_color"
@@ -30,6 +30,7 @@
                 <TextView
                     android:id="@+id/uNameTv"
                     android:text="Name"
+                    android:textStyle="bold"
                     android:textColor="@color/text_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -63,7 +64,7 @@
             android:id="@+id/pTitleTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="20dp"
             android:textStyle="bold"
             android:textColor="@color/text_color"
             android:text="Title"
@@ -73,6 +74,7 @@
             android:id="@+id/pDescriptionTv"
             android:textColor="@color/text_color"
             android:text="The description of post"
+            android:textSize="17dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autoLink="all"
@@ -88,12 +90,12 @@
             android:textColor="@color/text_color"/>
 
 
-        <TextView
-            android:id="@+id/pcomments"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="1K Comments"
-            android:textColor="@color/text_color"/>
+<!--        <TextView-->
+<!--            android:id="@+id/pcomments"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="1K Comments"-->
+<!--            android:textColor="@color/text_color"/>-->
 
 
         <View

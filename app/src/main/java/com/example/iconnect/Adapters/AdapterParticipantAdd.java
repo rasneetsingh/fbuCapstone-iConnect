@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,13 +61,10 @@ public class AdapterParticipantAdd extends RecyclerView.Adapter<AdapterParticipa
         //set data
         holder.nameTv.setText(name);
 
-
         holder.schoolTv.setText(school);
         holder.countryTv.setText(country);
 
-
         checkIfAlreadyExists(modelUser, holder);
-
 
         //handle click
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -349,15 +345,13 @@ public class AdapterParticipantAdd extends RecyclerView.Adapter<AdapterParticipa
 
     class HolderParticipantAdd extends RecyclerView.ViewHolder{
 
-        private ImageView avatarIv;
-        private TextView nameTv, emailTv, countryTv, schoolTv, majorTv, statusTv;
+
+        private TextView nameTv, countryTv, schoolTv, majorTv, statusTv;
 
         public HolderParticipantAdd(@NonNull View itemView){
             super(itemView);
 
-            avatarIv = itemView.findViewById(R.id.avatarIv);
             nameTv = itemView.findViewById(R.id.userPname);
-            emailTv = itemView.findViewById(R.id.userPemail);
             countryTv = itemView.findViewById(R.id.userPCountryname);
             schoolTv = itemView.findViewById(R.id.userPSchoolname);
             majorTv = itemView.findViewById(R.id.userMajor);

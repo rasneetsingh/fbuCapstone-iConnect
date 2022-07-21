@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.iconnect.Models.ModelPost;
+import com.example.iconnect.Models.ModelUser;
 import com.example.iconnect.PostDetailsActivity;
 import com.example.iconnect.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -39,6 +40,8 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
 
     String myuid;
 
+    List<ModelUser> userList;
+
     private DatabaseReference likesRef; //for likes database node
     private DatabaseReference postsRef; //reference of posts
 
@@ -60,7 +63,6 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         View view = LayoutInflater.from(context).inflate(R.layout.row_posts, parent, false);
         return new MyHolder(view);
 
-
     }
 
     @Override
@@ -76,7 +78,8 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         String pImage = postList.get(position).getpImage();
         String pTimeStamp = postList.get(position).getpTime();
         String pLikes = postList.get(position).getpLikes();
-        String pComments =postList.get(position).getpComments();
+
+
 
         //convert time stamp to dd/mm//yy hh:mm am/pm
 
@@ -90,7 +93,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         holder.pTitleTv.setText(pTitle);
         holder.pDescriptionTv.setText(pDescription);
         holder.pLikesTv.setText(pLikes + " Likes");
-        holder.pCommentsTv.setText(pComments + "Comments");
+
 
         //setlikes for each post
         setLikes(holder, pId);
@@ -128,7 +131,8 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
                                 likesRef.child(postIde).child(myuid).setValue("Liked"); //set any value
                                 mProcessLike = false;
 
-                                addToHisNotifications(""+uid, ""+pId, "Liked your post");
+                                if(!myuid.equals(uid))
+                                    addToHisNotifications(""+uid, ""+pId, "Liked your post");
 
                             }
                         }
@@ -153,7 +157,8 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
                 intent.putExtra("postId", pId);
                 context.startActivity(intent);
 
-                addToHisNotifications(""+uid, ""+pId, "Commented on your post");
+                if(!myuid.equals(uid))
+                    addToHisNotifications(""+uid, ""+pId, "Commented on your post");
             }
         });
 
@@ -181,12 +186,13 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         hashMap.put("sUid", myuid);
         hashMap.put("sName", "");
         hashMap.put("sEmail", "" );
+        hashMap.put("school", "");
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         ref.child(hisUid).child("Notifications").child(timestamp).setValue(hashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(Void unused) {
+                    public void onSuccess(Void unused){
 
 
                     }
@@ -197,7 +203,6 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
 
                     }
                 });
-
 
     }
 
@@ -259,9 +264,6 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         public MyHolder(@NonNull View itemView) {
             super(itemView);
 
-            //init views
-
-
             unameTv = itemView.findViewById(R.id.uNameTv);
             pTimeTv = itemView.findViewById(R.id.pTimeTv);
             pTitleTv = itemView.findViewById(R.id.pTitleTv);
@@ -271,8 +273,6 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
             likeBtn = itemView.findViewById(R.id.likeBtn);
             shareBtn = itemView.findViewById(R.id.shareBtn);
             commentBtn = itemView.findViewById(R.id.commentBtn);
-            pCommentsTv = itemView.findViewById(R.id.pcomments);
-
 
         }
     }

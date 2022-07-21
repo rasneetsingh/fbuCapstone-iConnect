@@ -98,7 +98,6 @@ public class PostDetailsActivity extends AppCompatActivity {
         pTitleTv = findViewById(R.id.pTitleTv);
         pDescriptionTv= findViewById(R.id.pDescriptionTv);
         pLikesTv= findViewById(R.id.plikes);
-        pCommentsTv= findViewById(R.id.pcomments);
         moreBtn = findViewById(R.id.moreBtn);
         likeBtn = findViewById(R.id.likeBtn);
         shareBtn= findViewById(R.id.shareBtn);
@@ -402,9 +401,6 @@ public class PostDetailsActivity extends AppCompatActivity {
                     pLikesTv.setText(pLikes + "Likes");
                     pTimeTiv.setText(pTime);
                     unameTv.setText(hisName);
-                    pCommentsTv.setText(commentCount + "Comments");
-
-
                 }
 
             }

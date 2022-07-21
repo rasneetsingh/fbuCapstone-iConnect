@@ -36,6 +36,14 @@
                 android:textColor="@color/black"/>
 
             <TextView
+                android:id="@+id/schoolTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="School"
+                android:textSize="18dp"
+                android:textColor="@color/black"/>
+
+            <TextView
                 android:id="@+id/timeTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -133,7 +133,6 @@ public class AdapterGroupChatList extends RecyclerView.Adapter<AdapterGroupChatL
 
         TextView groupTitleTv, nameTv, messageTv, timeTv;
 
-
         HolderGroupChatList(@NonNull View itemView){
             super(itemView);
 
@@ -141,10 +140,6 @@ public class AdapterGroupChatList extends RecyclerView.Adapter<AdapterGroupChatL
             nameTv = itemView.findViewById(R.id.nameTv);
             messageTv = itemView.findViewById(R.id.messageTv);
             timeTv = itemView.findViewById(R.id.timeTv);
-
-
-
-
 
         }
     }

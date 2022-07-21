@@ -1,5 +1,6 @@
 package com.example.iconnect;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class GroupParticipantsAddActivity extends AppCompatActivity {
 
@@ -33,6 +35,8 @@ public class GroupParticipantsAddActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_participants_add);
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar)));
+
         actionBar = getSupportActionBar();
         actionBar.setTitle("Add Participants");
         actionBar.setDisplayShowHomeEnabled(true);
@@ -108,13 +112,11 @@ public class GroupParticipantsAddActivity extends AppCompatActivity {
                                     }
 
                                 }
-
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
 
                                 }
                             });
-
                 }
 
             }
@@ -124,8 +126,6 @@ public class GroupParticipantsAddActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     @Override

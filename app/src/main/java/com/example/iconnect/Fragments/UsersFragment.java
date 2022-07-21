@@ -80,7 +80,7 @@ public class UsersFragment extends Fragment {
     private void getAllUsers() {
         //get current user
         FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
-        //get path of database named "users" containinf users info
+        //get path of database named "users" containing users info
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         //get all data from path
         ref.addValueEventListener(new ValueEventListener() {
@@ -95,10 +95,7 @@ public class UsersFragment extends Fragment {
                         userList.add(modelUser);
                     }
 
-                    //adapter
                     adapterUsers = new Users(getActivity(), userList);
-                    //set adapter to recycler view
-
 
                     GridLayoutManager layoutManager=new GridLayoutManager(getActivity(),2);
                     recyclerView.setLayoutManager(layoutManager);
@@ -166,8 +163,6 @@ public class UsersFragment extends Fragment {
                 return false;
             }
         });
-
-
 
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -240,6 +235,5 @@ public class UsersFragment extends Fragment {
             getActivity().finish();
         }
     }
-
 
 }

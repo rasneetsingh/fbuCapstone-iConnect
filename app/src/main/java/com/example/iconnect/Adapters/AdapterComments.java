@@ -57,9 +57,6 @@ public class AdapterComments extends RecyclerView.Adapter<AdapterComments.MyHold
         holder.commentTv.setText(comment);
         holder.timeTv.setText(pTime);
 
-
-
-
     }
 
     @Override

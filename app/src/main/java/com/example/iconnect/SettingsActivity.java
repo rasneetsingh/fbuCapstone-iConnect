@@ -22,7 +22,6 @@ public class SettingsActivity extends AppCompatActivity {
     SharedPreferences.Editor editor; //to edit value of shared pref
 
 
-
     ActionBar actionBar;
 
 
@@ -35,14 +34,9 @@ public class SettingsActivity extends AppCompatActivity {
         actionBar = getSupportActionBar();
         actionBar.setTitle("Settings");
 
-        postSwitch = findViewById(R.id.postNotify);
-
-
-
         //enable back button in action bar
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
@@ -57,7 +51,6 @@ public class SettingsActivity extends AppCompatActivity {
         else{
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         }
-
 
 
         switcher = findViewById(R.id.switcher);
@@ -76,13 +69,10 @@ public class SettingsActivity extends AppCompatActivity {
                     editor.putBoolean("isChecked", true);
                     editor.apply();
 
-
-
                 }
 
             }
         });
-
 
     }
 

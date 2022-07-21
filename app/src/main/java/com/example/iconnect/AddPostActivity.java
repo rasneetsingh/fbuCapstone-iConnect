@@ -55,7 +55,6 @@ public class AddPostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_post);
 
 
-
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar)));
 
         actionBar = getSupportActionBar();
@@ -66,6 +65,7 @@ public class AddPostActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         myuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        pId = getIntent().getStringExtra("pId");
 
         //init permisisons arrays
 
@@ -124,8 +124,8 @@ public class AddPostActivity extends AppCompatActivity {
 
                 uploadData(title, description);
 
-                addToHisNotifications(""+myuid, ""+ pId, "Added New Post");
 
+                addToHisNotifications(""+myuid, ""+pId, "Added New post");
 
             }
         });
@@ -138,11 +138,12 @@ public class AddPostActivity extends AppCompatActivity {
         HashMap<Object, String> hashMap = new HashMap<>();
         hashMap.put("pId", pId);
         hashMap.put("timestamp", timestamp);
-        hashMap.put("pUid", uid);
+        hashMap.put("pUid", hisUid);
         hashMap.put("notification", notification);
         hashMap.put("sUid", myuid);
         hashMap.put("sName", "");
         hashMap.put("sEmail", "" );
+        hashMap.put("school", "");
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         ref.child(hisUid).child("Notifications").child(timestamp).setValue(hashMap)
@@ -160,8 +161,8 @@ public class AddPostActivity extends AppCompatActivity {
                     }
                 });
 
-
     }
+
 
     private void uploadData(String title, String description) {
         pd.setMessage("Publishing post");
@@ -198,8 +199,6 @@ public class AddPostActivity extends AppCompatActivity {
                     //reset views
                     titleEt.setText("");
                     descriptionEt.setText("");
-
-
 
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -254,8 +253,6 @@ public class AddPostActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 
     private void checkUserStatus() {
         FirebaseUser user = firebaseAuth.getCurrentUser();

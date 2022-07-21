@@ -17,11 +17,6 @@
         android:orientation="horizontal">
 
 
-        <com.blogspot.atifsoftwares.circularimageview.CircularImageView
-            android:id="@+id/avatarIv"
-            android:src="@drawable/ic_default_img"
-            android:layout_width="70dp"
-            android:layout_height="70dp" />
 
 
         <LinearLayout
@@ -35,13 +30,6 @@
                 android:layout_height="wrap_content"
                 android:text="Person name"
                 android:textSize="18dp"
-                android:textColor="@color/text_color"/>
-
-            <TextView
-                android:id="@+id/userPemail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Person Email"
                 android:textColor="@color/text_color"/>
 
             <TextView

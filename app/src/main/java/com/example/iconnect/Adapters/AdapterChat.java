@@ -5,7 +5,6 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,7 +14,6 @@ import com.example.iconnect.Models.ModelChat;
 import com.example.iconnect.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
 import java.util.List;
@@ -28,14 +26,14 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
 
     Context context;
     List<ModelChat> chatList;
-    String imageUrl;
+
 
     FirebaseUser fUser;
 
-    public AdapterChat(Context context, List<ModelChat> chatList, String imageUrl) {
+    public AdapterChat(Context context, List<ModelChat> chatList) {
         this.context = context;
         this.chatList = chatList;
-        this.imageUrl = imageUrl;
+
     }
 
     @NonNull
@@ -50,7 +48,6 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
             return new MyHolder(view);
 
         }
-
     }
 
     @Override
@@ -60,26 +57,15 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
         String timeStamp = chatList.get(position).getTimestamp();
 
         //convert time stamp to dd/mm/yy hh:mm am/pm
-
         Calendar cal = Calendar.getInstance(Locale.ENGLISH);
         cal.setTimeInMillis(Long.parseLong(timeStamp));
         String dateTime = DateFormat.format("dd/MM/yyyy hh:mm aa", cal).toString();
 
         //set data
-
         holder.messageTv.setText(message);
         holder.timeTv.setText(dateTime);
 
-        try{
-            Picasso.get().load(imageUrl).into(holder.profileIv);
-
-        }catch(Exception e){
-
-
-        }
-
         //set seen/delivered status of message
-
         if(position == chatList.size()-1){
             if(chatList.get(position).isSeen()) {
                 holder.isSeenTv.setText("Seen");
@@ -93,17 +79,13 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
             holder.isSeenTv.setVisibility(View.GONE);
 
         }
-
     }
-
     @Override
     public int getItemCount() {
         return chatList.size();
     }
-
     @Override
     public int getItemViewType(int position) {
-
         //get currently signed in user
         fUser = FirebaseAuth.getInstance().getCurrentUser();
         if (chatList.get(position).getSender().equals(fUser.getUid())){
@@ -111,20 +93,14 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
         }else{
             return MSG_TYPE_LEFT;
         }
-
     }
-    //view holder class
+
     class MyHolder extends RecyclerView.ViewHolder {
 
-        //views
-        ImageView profileIv;
         TextView messageTv, timeTv, isSeenTv;
-
         public MyHolder(@NonNull View itemView) {
             super(itemView);
 
-            //init views
-            profileIv = itemView.findViewById(R.id.profileIv);
             messageTv = itemView.findViewById(R.id.messageTv);
             timeTv = itemView.findViewById(R.id.timeTv);
             isSeenTv = itemView.findViewById(R.id.isSeenTv);

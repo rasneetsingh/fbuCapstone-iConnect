@@ -21,11 +21,6 @@
             android:thumbTint="@color/switch_color"/>
 
 
-        <Switch
-            android:id="@+id/postNotify"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Post Notification" />
 
 
 

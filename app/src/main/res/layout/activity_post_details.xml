@@ -32,11 +32,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_color"
                     android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/pTimeTv"
                     android:layout_width="wrap_content"
+                    android:textColor="@color/text_color"
                     android:layout_height="wrap_content"
                     android:text="40 mins" />
 
@@ -57,6 +60,7 @@
             android:layout_height="wrap_content"
             android:autoLink="all"
             android:text="Title"
+            android:textColor="@color/text_color"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -65,6 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autoLink="all"
+            android:textColor="@color/text_color"
             android:text="The description of post" />
 
 
@@ -79,14 +84,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="1K likes"
-            android:textColor="@color/black" />
+            android:textColor="@color/text_color" />
 
-        <TextView
-            android:id="@+id/pcomments"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="1K Comments"
-            android:textColor="@color/black" />
 
         <View
             android:layout_width="match_parent"

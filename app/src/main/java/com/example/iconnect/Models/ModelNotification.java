@@ -2,12 +2,12 @@ package com.example.iconnect.Models;
 
 public class ModelNotification {
 
-    String pId, timestamp, pUid, notification, sUid, sName, sEmail, sImage;
+    String pId, timestamp, pUid, notification,school, sUid, sName, sEmail, sImage;
 
     public ModelNotification() {
     }
 
-    public ModelNotification(String pId, String timestamp, String pUid, String notification, String sUid, String sName, String sEmail, String sImage) {
+    public ModelNotification(String pId, String timestamp,String school, String pUid, String notification, String sUid, String sName, String sEmail, String sImage) {
         this.pId = pId;
         this.timestamp = timestamp;
         this.pUid = pUid;
@@ -16,6 +16,7 @@ public class ModelNotification {
         this.sName = sName;
         this.sEmail = sEmail;
         this.sImage = sImage;
+        this.school = school;
     }
 
     public String getpId() {
@@ -80,5 +81,13 @@ public class ModelNotification {
 
     public void setsImage(String sImage) {
         this.sImage = sImage;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
     }
 }
