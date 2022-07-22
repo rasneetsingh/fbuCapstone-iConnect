@@ -14,7 +14,6 @@ public class SplashScreenActivity extends AppCompatActivity {
     FirebaseUser currentUser;
     private FirebaseAuth mAuth;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +39,5 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
         }, 1000);
     }
-
-
-
 
 }

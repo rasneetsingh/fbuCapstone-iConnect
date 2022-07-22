@@ -43,16 +43,10 @@ import java.util.HashMap;
 
 
 public class ProfileFragment extends Fragment {
-
-    //firebase
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-
-
-    //views from xml
-    //ImageView profileimg;
     TextView tvName;
     TextView tvEmail;
     TextView tvschool;
@@ -69,15 +63,11 @@ public class ProfileFragment extends Fragment {
     public ProfileFragment() {
         // Required empty public constructor
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-
-
 
         mapBtn = view.findViewById(R.id.mapBtn);
         mapBtn.setOnClickListener(new View.OnClickListener() {
@@ -95,17 +85,13 @@ public class ProfileFragment extends Fragment {
                 showEditProfileDialog();
             }
         });
-//
-//
 
-       //init firebase
+        //init firebase
        firebaseAuth = FirebaseAuth.getInstance();
        user = firebaseAuth.getCurrentUser();
        firebaseDatabase = FirebaseDatabase.getInstance();
        databaseReference = firebaseDatabase.getReference("Users");
 
-       //init views
-        //profileimg = view.findViewById(R.id.profileimg);
         tvName = view.findViewById(R.id.nameTv);
         tvschool = view.findViewById(R.id.uniTv);
         tvEmail = view.findViewById(R.id.emailTv);
@@ -133,8 +119,6 @@ public class ProfileFragment extends Fragment {
                     String major = ""+ds.child("major").getValue();
                     String work = ""+ds.child("work").getValue();
 
-
-                    //set data
                     tvwork.setText(work);
                     tvmajor.setText(major);
                     tvcountry.setText(country);
@@ -195,8 +179,6 @@ public class ProfileFragment extends Fragment {
                     showProfileUpdateDialog("work");
 
                 }
-
-
             }
         });
         //create and show dialog
@@ -265,16 +247,11 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-
-
             }
         });
         //create and show dialog
         builder.create().show();
-
-
     }
-
 
     private void goMapActivity() {
         Intent i = new Intent(getActivity(), MapActivity.class);
@@ -311,10 +288,6 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-
-
-
-
     }
 
     @Override

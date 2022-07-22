@@ -22,7 +22,6 @@ public class GetStartedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_started);
 
-
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Create Account");
 

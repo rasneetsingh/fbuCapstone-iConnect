@@ -181,7 +181,7 @@ public class UsersFragment extends Fragment {
                 for(DataSnapshot ds: snapshot.getChildren()){
                     ModelUser modelUser = ds.getValue(ModelUser.class);
 
-                    //search by condition: name, email
+                    //search by condition: name, school and country
                     //get all searched users except currently signed in user
                     if(!modelUser.getUid().equals(fUser.getUid())){
                         if(modelUser.getCountry().toLowerCase().contains(query.toLowerCase()) ||
@@ -209,7 +209,6 @@ public class UsersFragment extends Fragment {
         });
 
     }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //get item id
@@ -218,8 +217,6 @@ public class UsersFragment extends Fragment {
             firebaseAuth.signOut();
             checkUserStatus();
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 

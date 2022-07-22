@@ -45,11 +45,9 @@ public class HomeFragment extends Fragment {
     List<ModelPost> postList;
     AdapterPosts adapterPosts;
 
-
     public HomeFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -97,7 +95,6 @@ public class HomeFragment extends Fragment {
                 }
 
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 //incase of error

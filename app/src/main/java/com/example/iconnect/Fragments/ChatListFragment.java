@@ -26,9 +26,7 @@ public class ChatListFragment extends Fragment {
     FirebaseAuth firebaseAuth;
 
 
-
     public ChatListFragment() {
-
     }
 
     @Override
@@ -92,9 +90,7 @@ public class ChatListFragment extends Fragment {
 
         }
 
-
         return super.onOptionsItemSelected(item);
     }
-
 
 }

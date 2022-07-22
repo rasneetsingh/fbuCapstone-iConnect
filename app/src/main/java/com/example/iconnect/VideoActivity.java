@@ -12,16 +12,12 @@ public class VideoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
 
-
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Chat");
-
-
 
         //enable back button
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-
     }
 
     @Override

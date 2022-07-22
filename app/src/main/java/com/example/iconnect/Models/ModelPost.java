@@ -7,7 +7,6 @@ public class ModelPost {
     public ModelPost(){
 
     }
-
     public ModelPost(String pId, String pTitle, String pdDescr, String pLikes, String pImage, String pTime, String uid, String pEmail, String uDp, String pName, String pComments) {
         this.pId = pId;
         this.pTitle = pTitle;

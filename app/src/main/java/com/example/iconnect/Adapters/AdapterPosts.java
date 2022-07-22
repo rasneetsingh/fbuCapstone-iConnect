@@ -47,7 +47,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
 
     boolean mProcessLike = false;
 
-    public AdapterPosts(Context context, List<ModelPost> postList) {
+    public AdapterPosts(Context context, List<ModelPost> postList){
         this.context = context;
         this.postList = postList;
 
@@ -79,10 +79,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         String pTimeStamp = postList.get(position).getpTime();
         String pLikes = postList.get(position).getpLikes();
 
-
-
         //convert time stamp to dd/mm//yy hh:mm am/pm
-
         Calendar calendar = Calendar.getInstance(Locale.getDefault());
         calendar.setTimeInMillis(Long.parseLong(pTimeStamp));
         String pTime = DateFormat.format("dd/MM/yyyy hh:mm aa", calendar).toString();

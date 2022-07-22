@@ -50,8 +50,6 @@ public class GroupChatActivity extends AppCompatActivity {
     private ArrayList<ModelGroupChat> groupChatList;
     private AdapterGroupChat adapterGroupChat;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,8 +78,6 @@ public class GroupChatActivity extends AppCompatActivity {
         loadGroupInfo();
         loadGroupMessages();
         loadMyGroupRole();
-
-
 
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override

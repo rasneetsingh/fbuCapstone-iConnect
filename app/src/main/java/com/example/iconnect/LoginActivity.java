@@ -61,8 +61,6 @@ public class LoginActivity extends AppCompatActivity {
     SignInButton mGoogleLogin;
     LoginButton facebookLogin;
 
-
-    //declare an instance of firebaseAuth
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
 
@@ -323,7 +321,6 @@ public class LoginActivity extends AppCompatActivity {
 
                             Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
 
-                            //updateUI(null);
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {

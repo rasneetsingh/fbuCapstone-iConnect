@@ -40,12 +40,9 @@ public class GroupChatFragment extends Fragment {
     ArrayList<ModelGroupChatList> groupChatLists;
     private AdapterGroupChatList adapterGroupChatList;
 
-
-
     public GroupChatFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

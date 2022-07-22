@@ -36,8 +36,6 @@ public class GroupCreateActivity extends AppCompatActivity {
     Button createGroupBtn;
     ProgressDialog progressDialog;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

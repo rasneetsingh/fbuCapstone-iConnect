@@ -103,20 +103,14 @@ public class Users extends RecyclerView.Adapter<Users.MyHolder>  {
         Button  profileBtn;
         ImageView chatBtn;
 
-
-
         public MyHolder(@NonNull View itemView) {
             super(itemView);
-
-            //init views
 
             mNameTv = itemView.findViewById(R.id.userPname);
             mSchoolTv = itemView.findViewById(R.id.userPSchoolname);
             mCountryTv = itemView.findViewById(R.id.userPCountryname);
             profileBtn  = itemView.findViewById(R.id.viewProfile);
             chatBtn = itemView.findViewById(R.id.userChat);
-
-
         }
     }
 }

@@ -6,7 +6,7 @@
     app:cardCornerRadius="25dp"
     app:cardElevation="3dp"
     app:cardUseCompatPadding="true"
-    app:cardBackgroundColor="@color/background_color"
+    app:cardBackgroundColor="@color/iConnect"
     app:contentPadding="5dp">
 
     <LinearLayout

@@ -357,7 +357,6 @@ public class AdapterParticipantAdd extends RecyclerView.Adapter<AdapterParticipa
             majorTv = itemView.findViewById(R.id.userMajor);
             statusTv = itemView.findViewById(R.id.statusTv);
 
-
         }
     }
 }

@@ -346,8 +346,6 @@ public class PostDetailsActivity extends AppCompatActivity {
 
                     }
                 });
-
-
     }
 
     private void loadUserInfo() {
@@ -412,8 +410,6 @@ public class PostDetailsActivity extends AppCompatActivity {
         });
 
     }
-
-
     private void checkUserStatus(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user!= null){

@@ -47,8 +47,6 @@ public class DashboardActivity extends AppCompatActivity {
         //init
         firebaseAuth = FirebaseAuth.getInstance();
 
-
-
         actionBar.setTitle("Home"); //change actionbar title
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar)));
         HomeFragment fragment1 = new HomeFragment();

@@ -41,13 +41,10 @@ public class AddPostActivity extends AppCompatActivity {
     EditText descriptionEt;
     Button postbtn;
 
-
     String pname, pemail, myuid, dp, uid,  pId;
-
 
     //progress bar
     ProgressDialog pd;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,10 +84,7 @@ public class AddPostActivity extends AppCompatActivity {
                     pname = ""+ ds.child("name").getValue();
                     pemail = ""+ ds.child("email").getValue();
                     dp = ""+ ds.child("image").getValue();
-
-
                 }
-
             }
 
             @Override
@@ -103,7 +97,6 @@ public class AddPostActivity extends AppCompatActivity {
         titleEt = findViewById(R.id.TitleEt);
         descriptionEt = findViewById(R.id.describeEt);
         postbtn = findViewById(R.id.postBtn);
-
 
         postbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,11 +114,9 @@ public class AddPostActivity extends AppCompatActivity {
                     return;
 
                 }
-
                 uploadData(title, description);
+                addToHisNotifications(""+uid, ""+pId, "Added new post");
 
-
-                addToHisNotifications(""+myuid, ""+pId, "Added New post");
 
             }
         });
@@ -149,12 +140,11 @@ public class AddPostActivity extends AppCompatActivity {
         ref.child(hisUid).child("Notifications").child(timestamp).setValue(hashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(Void unused) {
-
+                    public void onSuccess(Void unused){
 
                     }
                 })
-                .addOnFailureListener(new OnFailureListener() {
+                .addOnFailureListener(new OnFailureListener(){
                     @Override
                     public void onFailure(@NonNull Exception e) {
 
@@ -162,7 +152,6 @@ public class AddPostActivity extends AppCompatActivity {
                 });
 
     }
-
 
     private void uploadData(String title, String description) {
         pd.setMessage("Publishing post");
@@ -185,7 +174,7 @@ public class AddPostActivity extends AppCompatActivity {
         hashMap.put("pComments", "0");
 
 
-            //path to store post
+        //path to store post
 
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
             //put data in this ref

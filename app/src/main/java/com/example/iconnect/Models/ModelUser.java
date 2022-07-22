@@ -16,8 +16,6 @@ public class ModelUser {
 
     }
 
-
-
     public String getSchool() {
         return school;
     }

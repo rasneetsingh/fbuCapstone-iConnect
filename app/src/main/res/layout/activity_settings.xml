@@ -11,25 +11,13 @@
         android:layout_height="wrap_content"
         app:contentPadding="20dp">
 
-
         <Switch
             android:id="@+id/switcher"
             android:text="Dark Mode"
             android:layout_width="wrap_content"
-            android:layout_marginStart="240dp"
             android:layout_height="wrap_content"
             android:thumbTint="@color/switch_color"/>
 
-
-
-
-
     </androidx.cardview.widget.CardView>
-
-
-
-
-
-
 
 </RelativeLayout>

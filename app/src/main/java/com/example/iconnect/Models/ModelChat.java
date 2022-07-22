@@ -7,7 +7,6 @@ public class ModelChat {
     public ModelChat(){
 
     }
-
     public ModelChat(String message, String receiver, String sender, String timestamp, boolean isSeen) {
         this.message = message;
         this.receiver = receiver;
