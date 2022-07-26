@@ -6,6 +6,7 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -60,6 +61,8 @@ public class AdapterGroupChatList extends RecyclerView.Adapter<AdapterGroupChatL
         holder.messageTv.setText("");
         holder.groupTitleTv.setText(groupTitle);
 
+        holder.itemView.startAnimation(AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.anim_one));
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +72,6 @@ public class AdapterGroupChatList extends RecyclerView.Adapter<AdapterGroupChatL
 
             }
         });
-
     }
 
     private void loadLastMessage(ModelGroupChatList model, HolderGroupChatList holder) {

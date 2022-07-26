@@ -7,6 +7,7 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,7 +55,6 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
     @Override
     public void onBindViewHolder(@NonNull HolderNotification holder, int position) {
 
-
         ModelNotification model = notificationsList.get(position);
         String name = model.getsName();
         String notification = model.getNotification();
@@ -62,6 +62,8 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
         String senderUid = model.getsUid();
         String pId = model.getpId();
         String school = model.getSchool();
+
+        holder.itemView.startAnimation(AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.anim_one));
 
         Calendar calendar = Calendar.getInstance(Locale.getDefault());
         calendar.setTimeInMillis(Long.parseLong(timestamp));
@@ -78,14 +80,12 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
                             String email = ""+ds.child("email").getValue();
                             String school = ""+ds.child("school").getValue();
 
-                            //add to model
                             model.setsName(name);
                             model.setsEmail(email);
                             model.setSchool(school);
 
                             holder.nameTv.setText(name);
                             holder.schoolTv.setText(school);
-
 
                         }
                     }
@@ -96,7 +96,6 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
                     }
                 });
 
-        //set to views
         holder.notificationTv.setText(notification);
         holder.timeTv.setText(pTime);
 

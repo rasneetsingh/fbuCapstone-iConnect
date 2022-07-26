@@ -48,7 +48,6 @@ public class NotificationFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_quiz, container, false);
 
         notificationsRv = view.findViewById(R.id.notificationsRv);
-
         firebaseAuth = FirebaseAuth.getInstance();
 
         getAllNotifications();
@@ -69,19 +68,12 @@ public class NotificationFragment extends Fragment {
                         for(DataSnapshot ds: snapshot.getChildren()){
                             //get data
                             ModelNotification model = ds.getValue(ModelNotification.class);
-
-                            //add to list
                             notificationsList.add(model);
-
                         }
                         adapterNotification = new AdapterNotification(getActivity(), notificationsList);
-
-                        //set to recycler view
                         notificationsRv.setAdapter(adapterNotification);
 
-
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 

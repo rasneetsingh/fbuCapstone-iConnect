@@ -64,7 +64,6 @@ public class GroupCreateActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     private void startCreatingGroup() {

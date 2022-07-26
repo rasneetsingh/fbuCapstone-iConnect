@@ -206,9 +206,6 @@ public class AdapterParticipantAdd extends RecyclerView.Adapter<AdapterParticipa
                         });
             }
         });
-
-
-
     }
 
     private void makeAdmin(ModelUser modelUser) {

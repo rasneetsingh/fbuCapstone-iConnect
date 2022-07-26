@@ -42,8 +42,8 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
 
     List<ModelUser> userList;
 
-    private DatabaseReference likesRef; //for likes database node
-    private DatabaseReference postsRef; //reference of posts
+    private DatabaseReference likesRef;
+    private DatabaseReference postsRef;
 
     boolean mProcessLike = false;
 
@@ -79,24 +79,18 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         String pTimeStamp = postList.get(position).getpTime();
         String pLikes = postList.get(position).getpLikes();
 
-        //convert time stamp to dd/mm//yy hh:mm am/pm
         Calendar calendar = Calendar.getInstance(Locale.getDefault());
         calendar.setTimeInMillis(Long.parseLong(pTimeStamp));
         String pTime = DateFormat.format("dd/MM/yyyy hh:mm aa", calendar).toString();
 
-        //set data
         holder.unameTv.setText(pName);
         holder.pTimeTv.setText(pTime);
         holder.pTitleTv.setText(pTitle);
         holder.pDescriptionTv.setText(pDescription);
         holder.pLikesTv.setText(pLikes + " Likes");
 
-
-        //setlikes for each post
         setLikes(holder, pId);
 
-
-        //handle button clicks
         holder.moreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,7 +124,6 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
 
                                 if(!myuid.equals(uid))
                                     addToHisNotifications(""+uid, ""+pId, "Liked your post");
-
                             }
                         }
 
@@ -141,8 +134,6 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
 
                     }
                 });
-
-
             }
         });
 
@@ -166,7 +157,6 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
 
 
                 shareTextOnly(pTitle, pDescription);
-                //post without image
 
             }
         });
@@ -182,7 +172,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         hashMap.put("notification", notification);
         hashMap.put("sUid", myuid);
         hashMap.put("sName", "");
-        hashMap.put("sEmail", "" );
+        hashMap.put("sEmail", "");
         hashMap.put("school", "");
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
@@ -190,8 +180,6 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused){
-
-
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -200,20 +188,17 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
 
                     }
                 });
-
     }
 
     private void shareTextOnly(String pTitle, String pDescription) {
         //concatenate title and description to share
         String shareBody = pTitle + "\n" + pDescription;
 
-        //share intent
         Intent sIntent = new Intent (Intent.ACTION_SEND);
         sIntent.setType("text/plain");
         sIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject here"); //incase you share via an email
         sIntent.putExtra(Intent.EXTRA_TEXT, shareBody); //text to share
         context.startActivity(Intent.createChooser(sIntent, "Share Via")); //message to show in share dialog
-
     }
 
     private void setLikes(final MyHolder holder, final String postKey) {
@@ -232,7 +217,6 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
                     holder.likeBtn.setText("Like");
 
                 }
-
             }
 
             @Override
@@ -248,11 +232,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         return postList.size();
     }
 
-    //view holder class
     class MyHolder extends RecyclerView.ViewHolder{
-
-        //views from row_posts.xml
-
 
         TextView unameTv, pTimeTv, pTitleTv, pDescriptionTv, pLikesTv, pCommentsTv;
         ImageButton moreBtn;

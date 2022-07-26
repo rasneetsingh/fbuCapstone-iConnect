@@ -14,13 +14,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.iconnect.Fragments.GroupChatFragment;
 import com.example.iconnect.Fragments.HomeFragment;
-import com.example.iconnect.Fragments.ProfileFragment;
 import com.example.iconnect.Fragments.NotificationFragment;
+import com.example.iconnect.Fragments.ProfileFragment;
 import com.example.iconnect.Fragments.UsersFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Objects;
 
@@ -32,12 +33,32 @@ public class DashboardActivity extends AppCompatActivity {
 
     ActionBar actionBar;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        FirebaseMessaging.getInstance().subscribeToTopic("notification");
+
+
+//        FirebaseMessaging.getInstance().getToken()
+//                .addOnCompleteListener(new OnCompleteListener<String>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<String> task) {
+//                        if (!task.isSuccessful()) {
+//                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+//                            return;
+//                        }
+//
+//                        // Get new FCM registration token
+//                        String token = task.getResult();
+//
+//                        // Log and toast
+//                        String msg =  token;
+//                        Log.d("Token:", msg);
+//                        Toast.makeText(DashboardActivity.this, msg, Toast.LENGTH_SHORT).show();
+//                    }
+//                });
 
         //Actionbar and its title;
 
@@ -119,6 +140,7 @@ public class DashboardActivity extends AppCompatActivity {
         if(user != null){
             // user is signed in stay here
             //mProfileTv.setText(user.getEmail());
+
         }
         else{
             //user not signed in, go to main activity
