@@ -40,26 +40,6 @@ public class DashboardActivity extends AppCompatActivity {
 
         FirebaseMessaging.getInstance().subscribeToTopic("notification");
 
-
-//        FirebaseMessaging.getInstance().getToken()
-//                .addOnCompleteListener(new OnCompleteListener<String>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<String> task) {
-//                        if (!task.isSuccessful()) {
-//                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
-//                            return;
-//                        }
-//
-//                        // Get new FCM registration token
-//                        String token = task.getResult();
-//
-//                        // Log and toast
-//                        String msg =  token;
-//                        Log.d("Token:", msg);
-//                        Toast.makeText(DashboardActivity.this, msg, Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-
         //Actionbar and its title;
 
         actionBar = getSupportActionBar();
