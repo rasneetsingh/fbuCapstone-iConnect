@@ -32,15 +32,16 @@ A social networking app for both prospective and current international students 
 * Create a Post
 * Like/Comment/Share Post
 * Message
+*Create a Group Chat, Add Participant and start messaging. 
 * View someone's university (Google map Api)
 * Search User by school/country/major.
+*Notificaton to see who liked and commented on post
+*Dark Mode
 
 
 **Optional Nice-to-have Stories**
-
-
+*Notificaton to see who liked and commented on post
 *Create a group, add participants and start conversation
-
 *Push Notification
 
 
@@ -66,7 +67,6 @@ A social networking app for both prospective and current international students 
 * Home Screen
 * Compose Screen
 * Profile
-* Saved post
  
 
 
