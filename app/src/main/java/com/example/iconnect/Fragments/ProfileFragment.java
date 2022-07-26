@@ -27,7 +27,6 @@ import com.example.iconnect.AddPostActivity;
 import com.example.iconnect.MainActivity;
 import com.example.iconnect.MapActivity;
 import com.example.iconnect.R;
-import com.example.iconnect.VideoActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,12 +52,10 @@ public class ProfileFragment extends Fragment {
     TextView tvcountry;
     TextView tvmajor;
     TextView tvwork;
-    Button liveBtn;
     Button mapBtn;
     ImageView editprofile;
 
     ProgressDialog pd;
-
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -260,11 +257,6 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    private void goVideoActivity() {
-        Intent i = new Intent(getActivity(), VideoActivity.class);
-        startActivity(i);
-        getActivity().finish();
-    }
 
     private void checkUserStatus(){
         //get current user

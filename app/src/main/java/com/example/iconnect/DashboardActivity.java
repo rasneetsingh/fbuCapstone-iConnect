@@ -27,8 +27,6 @@ import java.util.Objects;
 
 public class DashboardActivity extends AppCompatActivity {
 
-
-    //firebase auth
     FirebaseAuth firebaseAuth;
 
     ActionBar actionBar;
@@ -110,8 +108,6 @@ public class DashboardActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
     }
     private void checkUserStatus(){
         //get current user
@@ -119,7 +115,6 @@ public class DashboardActivity extends AppCompatActivity {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if(user != null){
             // user is signed in stay here
-            //mProfileTv.setText(user.getEmail());
 
         }
         else{
@@ -135,8 +130,4 @@ public class DashboardActivity extends AppCompatActivity {
         checkUserStatus();
         super.onStart();
     }
-
-    //inflate option menu
-
-
 }

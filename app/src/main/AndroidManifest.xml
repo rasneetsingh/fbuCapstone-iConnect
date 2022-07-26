@@ -84,9 +84,6 @@
             android:name=".SplashScreenActivity"
             android:exported="false" />
         <activity
-            android:name=".VideoActivity"
-            android:exported="false" />
-        <activity
             android:name=".GetStartedActivity"
             android:exported="false" />
         <activity
