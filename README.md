@@ -10,14 +10,13 @@
 
 ## Overview
 ### Description
-A social networking app for both prospective and current international students to share, connect, and network with each other. 
-
+A social networking app for both prospective and current international students to search for students from the country or university they are interested in and chat with each other, create a resourceful post and also create a group chat to to discuss topics in common. 
 
 ### App Evaluation
 - **Category:** Social networking.
-- **Mobile:** This app will be mobile becasue it uses camera. 
+- **Mobile:** It is mobile. 
 - **Story:** Allows user to share post, connect with each other and start conversation.
-- **Market:** International Student
+- **Market:** Students
 - **Habit:** Can be used everyday.
 
 ## Product Spec
@@ -35,6 +34,7 @@ A social networking app for both prospective and current international students 
 *Create a Group Chat, Add Participant and start messaging. 
 * View someone's university (Google map Api)
 * Search User by school/country/major.
+*Search Feature in Post
 *Notificaton to see who liked and commented on post
 *Dark Mode
 
@@ -51,14 +51,18 @@ A social networking app for both prospective and current international students 
 * Register - User can sign up or login
    * Prompted to home screen
   
-* Home Screen - Shows the post
+* Home Fragment - Shows the post
+    *Detail view of post
    
-* Compose Post
+* Add Post Activity
    * Allows user to compose the post
-* Save Post
-   * User will be able to save the post
 * Profile Screen
-    *user profile and uni info
+   * User Profile and their info and MAP
+ *Notification Screen
+  *See who liked and commented on your post.
+ *Group Chat
+  *Create a group and add participants and start messaging
+
 
 ### 3. Navigation
 
@@ -88,7 +92,6 @@ A social networking app for both prospective and current international students 
    | objectId      | String   | unique id for the user |
    | Username      | String   | username for sign|
    | Password      | String   | the users password |
-   | image         | File     | image for user profile image |
    | uni name        | String   | the university name |
   
    
@@ -99,7 +102,6 @@ A social networking app for both prospective and current international students 
    | ------------- | -------- | ------------|
    | objectId      | String   | unique id for the post |
    |   description        | String   | the post description |
-   | image         | File     | image for the post |
    | User          | Pointer   | the user who posted |
    | createdAt     | DateTime | date the post is created|
    
