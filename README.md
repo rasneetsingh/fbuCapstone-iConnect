@@ -51,6 +51,7 @@ A social networking app for both prospective and current international students 
    *User can login
   
 *Home Fragment
+
     *User can see the post
     *User can like/comment
     *Go to detail view
@@ -58,16 +59,23 @@ A social networking app for both prospective and current international students 
     *User can create a post
     
 *Users Fragment
+
    *User can see other users
    *User can view other user profile
    *User can search for user based on their name/country/school
    *User can message
     
 * Profile Screen
+
    * User Profile and their info and MAP
- *Notification Screen
+  
+  
+*Notification Screen
+ 
   *See who liked and commented on your post.
- *Group Chat
+  
+*Group Chat
+ 
   *Create a group and add participants and start messaging
 
 
