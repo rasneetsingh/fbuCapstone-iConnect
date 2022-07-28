@@ -48,32 +48,30 @@ A social networking app for both prospective and current international students 
     * User can register
     
 *Login screen
-   *User can login
+   * User can login
   
-*Home Fragment
- User can see the post
- User can like/comment
- Go to detail view
- User can go to settings
- User can create a post
+* Home Fragment
+   * User can see the post
+   * User can like/comment
+   * Go to detail view
+   * User can go to settings
+   * User can create a post
     
-*Users Fragment
-   User can see other users
-   User can view other user profile
-   User can search for user based on their name/country/school
-   User can message
+* Users Fragment
+   * User can see other users
+   * User can view other user profile
+   * User can search for user based on their name/country/school
+   * User can message
     
-*Profile Screen
-   User Profile and their info and MAP
+* Profile Screen
+   * User Profile and their info and MAP
   
   
-*Notification Screen
- 
-  *See who liked and commented on your post.
+* Notification Screen
+ * See who liked and commented on your post.
   
-*Group Chat
- 
-  *Create a group and add participants and start messaging
+* Group Chat
+ * Create a group and add participants and start messaging
 
 
 ### 3. Navigation
