@@ -45,7 +45,7 @@ A social networking app for both prospective and current international students 
 
 * Get Started
 * Register Screen
-   * User can register
+    * User can register
 *Login screen
   *User can login
 *Home Fragment
