@@ -37,9 +37,9 @@ A social networking app for both prospective and current international students 
 * View someone's university (Google map Api)
 
 **Optional Nice-to-have Stories**
-*User can see notification who liked and commented on post.
-*User can Create a group, add participants and start conversation
-*Dark mode
+* User can see notification who liked and commented on post.
+* User can Create a group, add participants and start conversation
+* Dark mode
 
 ### 2. Screen Archetypes
 
