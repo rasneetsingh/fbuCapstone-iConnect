@@ -24,38 +24,42 @@ A social networking app for both prospective and current international students 
 
 **Required Must-have Stories**
 
-* Sign up 
-* LogIn 
-  *Google and Facebook LogIn Features
-* Edit the profile
-* Create a Post
-* Like/Comment/Share Post
-* Message
-*Create a Group Chat, Add Participant and start messaging. 
+* User can register
+* User can login
+*User can login via google and facebook account
+* User can edit the profile
+*User can search for another user 
+* User can create post
+* User can like/comment on Post
+*User can share post to another social channel such as gmail/whatsapp
+*User can search for post
+* User can message other user 
 * View someone's university (Google map Api)
-* Search User by school/country/major.
-*Search Feature in Post
-*Notificaton to see who liked and commented on post
-*Dark Mode
-
 
 **Optional Nice-to-have Stories**
-*Notificaton to see who liked and commented on post
-*Create a group, add participants and start conversation
-*Push Notification
-
+*User can see notification who liked and commented on post.
+*User can Create a group, add participants and start conversation
+*Dark mode
 
 ### 2. Screen Archetypes
 
 * Get Started
-* Register - User can sign up or login
-   * Prompted to home screen
-  
-* Home Fragment - Shows the post
-    *Detail view of post
-   
-* Add Post Activity
-   * Allows user to compose the post
+* Register Screen
+   * User can register
+*Login screen
+  *User can login
+*Home Fragment
+    *User can see the post
+    *User can like/comment
+    *Go to detail view
+    *User can go to settings
+    *User can create a post
+*Users Fragment
+ *User can see other users
+ *User can view other user profile
+ *User can search for user based on their name/country/school
+ *User can message
+    
 * Profile Screen
    * User Profile and their info and MAP
  *Notification Screen
