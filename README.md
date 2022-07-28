@@ -68,19 +68,16 @@ A social networking app for both prospective and current international students 
   
   
 * Notification Screen
- * See who liked and commented on your post.
+   * See who liked and commented on your post.
   
 * Group Chat
- * Create a group and add participants and start messaging
+   * Create a group and add participants and start messaging
 
+* Tools and Technologies
+   * Google Map API
+   * Firebase Database
+   * Facebook SDK
 
-### 3. Navigation
-
-**Tab Navigation** (Tab to Screen)
-
-* Home Screen
-* Compose Screen
-* Profile
  
 
 
@@ -90,30 +87,38 @@ A social networking app for both prospective and current international students 
 
 ![wireframe](https://user-images.githubusercontent.com/67130269/174226708-8cadde81-0dc9-47f6-b0ad-132c5ff67098.jpg)
 
-
-
-## Schema 
-### Models
-
-#### User
-
-   | Property      | Type     | Description |
-   | ------------- | -------- | ------------|
-   | objectId      | String   | unique id for the user |
-   | Username      | String   | username for sign|
-   | Password      | String   | the users password |
-   | uni name        | String   | the university name |
+* User
+   * id (String)
+   * email(String)
+   * name(String)
+   * work(String)
+   * country(String)
+   * major(String)
+   * school(String)
+   
+* Posts
+   * pEmail(string)
+   * uid(String)
+   * pName(String)
+   * pTitle(String)
+   * pDescr(String)
+   * pId (String)
+   * pTime(String)
+   
+* Chats
+   * isSeen(boolean)
+   * message(String)
+   * receiver
+   * sender
   
-   
-   
-   #### Posts
+ * Groups
+   * Participants
+      * createdBy
+      * groupDescription
+      * groupId
+      * groupTitle
+      * timeStamp
 
-   | Property      | Type     | Description |
-   | ------------- | -------- | ------------|
-   | objectId      | String   | unique id for the post |
-   |   description        | String   | the post description |
-   | User          | Pointer   | the user who posted |
-   | createdAt     | DateTime | date the post is created|
    
 ### Networking
 #### List of network requests by screen
